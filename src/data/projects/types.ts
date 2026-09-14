@@ -14,10 +14,16 @@ export type ProjectCardData = {
   detailImagesKey?: string;
   projectUrl?: string;
   projectUrlLabel?: string;
+  appLinks?: {
+    android?: string;
+    appStore?: string;
+  };
+  galleryMode?: "default" | "phone";
   brandLogo?: boolean;
 };
 
 export type ProjectDetailImage = {
   src: StaticImageData;
   alt: string;
+  format?: "phone" | "screen";
 };

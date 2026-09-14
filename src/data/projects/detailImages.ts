@@ -16,12 +16,21 @@ import ongResults from "@/assets/projects/paginas/results_vsf.png";
 import ongTeam from "@/assets/projects/paginas/team_vsf.png";
 import ongNews from "@/assets/projects/paginas/news_vsf.png";
 import ongContact from "@/assets/projects/paginas/contact_vsf.png";
-import cuadraiOverview from "@/assets/projects/pichangapp/nuevo1c.png";
-import cuadraiReservation from "@/assets/projects/pichangapp/1d.jpeg";
-import cuadraiAdmin from "@/assets/projects/pichangapp/b.jpeg";
-import cuadraiSchedule from "@/assets/projects/pichangapp/c.jpeg";
-import cuadraiBookings from "@/assets/projects/pichangapp/e.jpeg";
-import cuadraiMobile from "@/assets/projects/pichangapp/f.jpeg";
+import cuadraiWebHome from "@/assets/projects/cuadrai/webapp-home.png";
+import cuadraiWebProblem from "@/assets/projects/cuadrai/web-problematica.png";
+import cuadraiWebPayments from "@/assets/projects/cuadrai/web-pagos.png";
+import cuadraiWebTwoSides from "@/assets/projects/cuadrai/web-dosfrentes.png";
+import cuadraiWebDiscover from "@/assets/projects/cuadrai/web-descubre.png";
+import cuadraiOnboarding1 from "@/assets/projects/cuadrai/onboarding1.png";
+import cuadraiOnboarding2 from "@/assets/projects/cuadrai/onboarding2.png";
+import cuadraiOnboarding3 from "@/assets/projects/cuadrai/onboarding3.png";
+import cuadraiOnboarding4 from "@/assets/projects/cuadrai/onboarding4.png";
+import cuadraiOnboarding5 from "@/assets/projects/cuadrai/onboarding5.png";
+import xtremeWebHero from "@/assets/projects/xtreme/web-hero.png";
+import xtremeWebSection from "@/assets/projects/xtreme/web-section.png";
+import xtremeAppPanel from "@/assets/projects/xtreme/app-panel.png";
+import xtremeAppHorarios from "@/assets/projects/xtreme/app-horarios.png";
+import xtremeAppCatalogo from "@/assets/projects/xtreme/app-catalogo.png";
 import type { ProjectDetailImage } from "@/data/projects/types";
 
 const DETAIL_IMAGES: Record<string, ProjectDetailImage[]> = {
@@ -49,13 +58,28 @@ const DETAIL_IMAGES: Record<string, ProjectDetailImage[]> = {
     { src: ongNews, alt: "ONG becas deportivas noticias" },
     { src: ongContact, alt: "ONG becas deportivas contacto" },
   ],
-  pichangapp: [
-    { src: cuadraiOverview, alt: "CUADRAI vista general" },
-    { src: cuadraiReservation, alt: "CUADRAI reserva de canchas" },
-    { src: cuadraiAdmin, alt: "CUADRAI panel de administración" },
-    { src: cuadraiSchedule, alt: "CUADRAI gestión de horarios" },
-    { src: cuadraiBookings, alt: "CUADRAI detalle de reservas" },
-    { src: cuadraiMobile, alt: "CUADRAI vista móvil" },
+  cuadrai: [
+    { src: cuadraiWebHome, alt: "CUADRAI panel principal" },
+    { src: cuadraiWebProblem, alt: "CUADRAI problemática que resuelve" },
+    { src: cuadraiWebPayments, alt: "CUADRAI pagos y reservas" },
+    { src: cuadraiWebTwoSides, alt: "CUADRAI experiencia para jugadores y administradores" },
+    { src: cuadraiWebDiscover, alt: "CUADRAI descubrimiento de canchas" },
+  ],
+  cuadraiOnboarding: [
+    { src: cuadraiOnboarding1, alt: "CUADRAI onboarding inicial", format: "phone" },
+    { src: cuadraiOnboarding2, alt: "CUADRAI onboarding para jugar", format: "phone" },
+    { src: cuadraiOnboarding3, alt: "CUADRAI onboarding para encontrar jugadores", format: "phone" },
+    { src: cuadraiOnboarding4, alt: "CUADRAI panel para gestionar negocios", format: "phone" },
+    { src: cuadraiOnboarding5, alt: "CUADRAI asistente conversacional", format: "phone" },
+    { src: cuadraiWebPayments, alt: "CUADRAI pagos y reservas", format: "screen" },
+    { src: cuadraiWebDiscover, alt: "CUADRAI descubrimiento de canchas", format: "screen" },
+  ],
+  xtreme: [
+    { src: xtremeWebHero, alt: "Xtreme Fitness Sport website principal" },
+    { src: xtremeWebSection, alt: "Xtreme Fitness Sport sección del website" },
+    { src: xtremeAppPanel, alt: "Xtreme Fitness Sport panel administrativo" },
+    { src: xtremeAppHorarios, alt: "Xtreme Fitness Sport gestión de horarios" },
+    { src: xtremeAppCatalogo, alt: "Xtreme Fitness Sport catálogo de planes" },
   ],
 };
 

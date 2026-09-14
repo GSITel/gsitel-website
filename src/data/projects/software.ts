@@ -15,7 +15,7 @@ export const softwareProjects: ProjectCardData[] = [
     detail:
       "CUADRAI PE es la plataforma principal de alquiler de canchas deportivas. Diseñamos una experiencia digital clara para consultar disponibilidad, reservar y administrar la operación de cada espacio desde una sola solución.",
     techTags: ["Python", "React Native"],
-    detailImagesKey: "pichangapp",
+    detailImagesKey: "cuadraiOnboarding",
     highlights: [
       "Disponibilidad de canchas en tiempo real",
       "Reservas desde la app móvil",
@@ -26,6 +26,11 @@ export const softwareProjects: ProjectCardData[] = [
     accent: "#2f9edb",
     projectUrl: "https://cuadraipe.com/",
     projectUrlLabel: "Visitar CUADRAI PE",
+    appLinks: {
+      android: "https://play.google.com/store/apps/details?id=com.cuadraipe.cuadrai&pcampaignid=web_share",
+      appStore: "https://apps.apple.com/us/app/cuadrai/id6793684461",
+    },
+    galleryMode: "phone",
     brandLogo: true,
   },
   {
@@ -57,16 +62,17 @@ export const softwareProjects: ProjectCardData[] = [
     description:
       "Experiencia digital para una marca fitness que busca atraer, informar y convertir nuevos miembros.",
     detail:
-      "Caso de éxito para Xtreme Fitness Sport: una presencia digital enfocada en comunicar su propuesta, mostrar sus servicios y facilitar el contacto con personas interesadas en entrenar.",
+      "Caso de éxito para Xtreme Fitness Sport: desarrollamos la experiencia pública del website y una aplicación interna para administrar clientes, planes, horarios y catálogo desde una sola operación.",
     techTags: ["Web Design", "UI/UX", "SEO"],
+    detailImagesKey: "xtreme",
     highlights: [
-      "Presentación clara de servicios y beneficios",
-      "Experiencia responsive para captar nuevos miembros",
-      "Canales de contacto orientados a conversión",
+      "Website para comunicar la propuesta y captar nuevos miembros",
+      "Panel administrativo para clientes, planes y promociones",
+      "Gestión de horarios y catálogo desde la app",
     ],
     image: xtremeLogo,
     imageAlt: "Logo de Xtreme Fitness Sport",
-    accent: "#f39c36",
+    accent: "#20ef18",
     projectUrl: "https://xtremefitnesssport.com/",
     projectUrlLabel: "Visitar Xtreme Fitness Sport",
     brandLogo: true,

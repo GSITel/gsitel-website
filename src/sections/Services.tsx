@@ -1,101 +1,84 @@
 "use client";
 
-import automateBackground from "@/assets/backgrounds/services_background_automate.png";
-import telecomBackground from "@/assets/backgrounds/services_background_telecom.png";
 import { AppModal } from "@/components/AppModal";
 import { MotionInView, staggerContainer, staggerItem } from "@/components/MotionInView";
 import { getModeTheme } from "@/lib/modeTheme";
 import type { SiteMode } from "@/lib/siteMode";
 import { motion } from "framer-motion";
-import { RadioTower, ScanSearch, Workflow } from "lucide-react";
+import {
+  ArrowUpRight,
+  Check,
+  RadioTower,
+  ScanSearch,
+  Workflow,
+  X,
+  type LucideIcon,
+} from "lucide-react";
 import { useState } from "react";
 
 type ServiceItem = {
   id: string;
   label: string;
-  imageAlt: string;
-  icon: React.ReactNode;
-  title: React.ReactNode;
+  icon: LucideIcon;
+  title: string;
   description: string;
+  promise: string;
   activities: string[];
   accent: string;
   accentRgb: string;
-  background: typeof automateBackground;
 };
 
 const services: ServiceItem[] = [
   {
     id: "automation",
     label: "Automatización & Software",
-    imageAlt: "Ilustración de automatización y software para operaciones críticas",
-    icon: <Workflow className="h-6 w-6 text-[#2f9edb]" strokeWidth={1.8} />,
-    title: (
-      <>
-        Automatización y software para operaciones{" "}
-        <span className="text-[#2f9edb]">críticas</span>.
-      </>
-    ),
+    icon: Workflow,
+    title: "Software que ordena la operación",
     description:
-      "Diseñamos soluciones a medida para automatizar procesos, centralizar información y acelerar la toma de decisiones.",
+      "Diseñamos aplicaciones, automatizaciones e integraciones alrededor de cómo funciona realmente tu negocio.",
+    promise: "Menos tareas manuales. Más control para decidir.",
     activities: [
       "Automatización de ventas, compras y cobranzas",
-      "Desarrollo de aplicaciones web, páginas web y diseño web",
-      "Apps móviles con Flutter/React Native y APIs backend",
-      "Reportes simples y paneles para microempresas y empresas",
-      "Control de clientes, inventario y operaciones diarias",
+      "Aplicaciones web, móviles y APIs backend",
+      "Paneles para clientes, inventario y operación",
       "Alertas y flujos de trabajo para reducir errores",
     ],
     accent: "#2f9edb",
     accentRgb: "47, 158, 219",
-    background: automateBackground,
   },
   {
     id: "ran",
     label: "Ingeniería RAN",
-    imageAlt: "Ilustración de ingeniería RAN para redes móviles",
-    icon: <RadioTower className="h-6 w-6 text-[#e99532]" strokeWidth={1.8} />,
-    title: (
-      <>
-        Integración y configuración{" "}
-        <span className="text-[#ffc266]">RAN</span> multivendor.
-      </>
-    ),
+    icon: RadioTower,
+    title: "Ingeniería para redes que no pueden detenerse",
     description:
-      "Servicios especializados para despliegue, optimización y soporte en redes móviles 2G/3G/4G/5G.",
+      "Integramos, optimizamos y acompañamos infraestructura móvil 2G/3G/4G/5G con ejecución técnica en campo.",
+    promise: "Despliegue claro. Continuidad operativa.",
     activities: [
       "Comisionamiento y capacitación de BBU",
       "Integración y configuración de nodos RAN",
-      "Diseño Drive Test & Site Survey",
-      "Transmisión y backhaul: rutas MW, enlaces y validación",
+      "Drive Test, Site Survey, transmisión y backhaul",
       "Soporte, optimización y monitoreo OyM RAN",
-      "Consultoría de implementación de controladores",
     ],
     accent: "#f39c36",
     accentRgb: "243, 156, 54",
-    background: telecomBackground,
   },
   {
     id: "consultoria",
     label: "Consultoría de Software",
-    imageAlt: "Ilustración de consultoría de proyectos de software",
-    icon: <ScanSearch className="h-6 w-6 text-[#1b5aa6]" strokeWidth={1.8} />,
-    title: (
-      <>
-        Consultoría para{" "}
-        <span className="text-[#7fb7ff]">proyectos de software</span>.
-      </>
-    ),
+    icon: ScanSearch,
+    title: "Claridad antes de invertir en tecnología",
     description:
-      "Acompañamos a empresas grandes y microempresas en la planificación y ejecución de iniciativas digitales con foco en impacto y eficiencia.",
+      "Traducimos necesidades dispersas en prioridades, arquitectura y un plan de ejecución que el equipo puede entender.",
+    promise: "La solución correcta, en el orden correcto.",
     activities: [
-      "Diagnóstico claro de procesos y oportunidades",
-      "Plan paso a paso para digitalizarse sin complicaciones",
-      "Automatización con IA para ahorrar tiempo y errores",
-      "Implementación y acompañamiento en cada etapa del proceso",
+      "Diagnóstico de procesos y oportunidades",
+      "Roadmap de producto y arquitectura técnica",
+      "Automatización con IA donde aporta valor",
+      "Acompañamiento durante la implementación",
     ],
-    accent: "#2f9edb",
-    accentRgb: "47, 158, 219",
-    background: automateBackground,
+    accent: "#1b5aa6",
+    accentRgb: "27, 90, 166",
   },
 ];
 
@@ -107,92 +90,110 @@ export const Services = ({ mode }: { mode: SiteMode }) => {
     : [services[0], services[2]];
   const focusTags = theme.isTelecom
     ? ["RAN", "Drive test", "OyM", "Automatización"]
-    : ["Apps web", "Dashboards", "APIs", "IA aplicada"];
+    : ["Apps web", "Automatización", "APIs", "IA aplicada"];
 
   return (
     <section
       id="servicios"
       className="quiet-section quiet-surface relative bg-transparent px-4 section-shell scroll-mt-24 sm:px-6 md:scroll-mt-28"
     >
-      <div className="quiet-texture pointer-events-none absolute inset-0 opacity-30" />
-      <div className="mx-auto max-w-7xl">
-        <MotionInView className="max-w-2xl">
-          <p className="section-eyebrow-light">Servicios</p>
-          <h2 className="section-title-light">
-            {theme.isTelecom
-              ? "Capacidad técnica para infraestructura telecom"
-              : "Soluciones digitales para operaciones exigentes"}
-          </h2>
-          <p className="section-desc-light">
-            {theme.isTelecom
-              ? "Ingeniería, integración y soporte para redes móviles con altos estándares de operación."
-              : "Diseño, desarrollo y automatización de sistemas alineados con la operación del negocio."}
-          </p>
-          <div className="mt-7 flex flex-wrap gap-x-6 gap-y-2">
-            {focusTags.map((item) => (
-              <span
-                key={item}
-                className="border-l border-[#0b1d3a]/15 pl-3 text-[10px] font-black uppercase tracking-[0.2em] text-[#0b1d3a]/55"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-        </MotionInView>
+      <div className="quiet-texture pointer-events-none absolute inset-0 opacity-25" />
+      <div className="relative mx-auto max-w-7xl">
+        <div className="grid gap-8 border-b border-[#0b1d3a]/10 pb-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+          <MotionInView>
+            <p className="section-eyebrow-light">Servicios</p>
+            <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-[1.08] tracking-[-0.04em] text-[#06111f] sm:text-4xl lg:text-5xl">
+              {theme.isTelecom
+                ? "Capacidad técnica para sostener tu red"
+                : "Tecnología que resuelve lo importante"}
+            </h2>
+          </MotionInView>
+
+          <MotionInView delay={0.08} className="lg:justify-self-end">
+            <p className="max-w-xl text-sm leading-7 text-[#0b1d3a]/65 sm:text-base">
+              {theme.isTelecom
+                ? "Ingeniería, integración y soporte con una ejecución visible de principio a fin."
+                : "Partimos del problema operativo y construimos únicamente lo que genera control, velocidad o crecimiento."}
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {focusTags.map((item) => (
+                <span
+                  key={item}
+                  className="rounded-full border border-[#0b1d3a]/10 bg-white/55 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.16em] text-[#0b1d3a]/55"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </MotionInView>
+        </div>
 
         <motion.div
-          className="mt-14 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5"
+          className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5"
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-40px" }}
+          viewport={{ once: true, margin: "-60px" }}
         >
-          {orderedServices.map((service, index) => (
-            <motion.article
-              key={service.id}
-              variants={staggerItem}
-              whileHover={{ y: -6 }}
-              transition={{ type: "spring", stiffness: 360, damping: 28 }}
-              className="quiet-card group relative flex flex-col overflow-hidden rounded-[1.75rem] p-6 transition-shadow duration-500 hover:shadow-[0_34px_90px_rgba(27,61,107,0.15)] sm:p-8"
-            >
-              <div
-                className="pointer-events-none absolute inset-x-8 top-0 h-px opacity-70"
-                style={{ background: `linear-gradient(90deg, transparent, ${service.accent}, transparent)` }}
-              />
-              <div className="flex items-center justify-between gap-6">
-                <span className="text-[10px] font-black tracking-[0.28em]" style={{ color: service.accent }}>
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <span className="text-[9px] font-black uppercase tracking-[0.18em] text-[#0b1d3a]/45">
-                  {service.label}
-                </span>
-              </div>
+          {orderedServices.map((service) => {
+            const Icon = service.icon;
 
-              <div className="mt-10 inline-flex h-11 w-11 items-center justify-center rounded-2xl border border-[#0b1d3a]/[0.06] bg-[#0b1d3a]/[0.035] text-[#0b1d3a] transition duration-500 group-hover:-translate-y-1 group-hover:bg-white">
-                {service.icon}
-              </div>
-              <h3 className="mt-6 text-2xl font-black leading-tight text-[#0b1d3a] sm:text-3xl">
-                {service.title}
-              </h3>
-              <p className="mt-4 max-w-lg text-sm leading-7 text-[#0b1d3a]/65 sm:text-base">
-                {service.description}
-              </p>
-              <ul className="mt-8 border-t border-[#0b1d3a]/10">
-                {service.activities.slice(0, 3).map((activity) => (
-                  <li key={activity} className="border-b border-[#0b1d3a]/[0.07] py-3 text-sm text-[#0b1d3a]/65">
-                    {activity}
-                  </li>
-                ))}
-              </ul>
-              <button
-                type="button"
-                onClick={() => setActiveService(service)}
-                className="mt-8 self-start text-[10px] font-black uppercase tracking-[0.22em] text-[#1b5aa6] transition hover:translate-x-1 hover:opacity-70"
+            return (
+              <motion.article
+                key={service.id}
+                variants={staggerItem}
+                whileHover={{ y: -4 }}
+                transition={{ type: "spring", stiffness: 300, damping: 26 }}
+                className="quiet-card group relative flex min-h-[430px] flex-col overflow-hidden rounded-[1.6rem] p-6 sm:p-8"
               >
-                Ver alcance
-              </button>
-            </motion.article>
-          ))}
+                <div
+                  className="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100"
+                  style={{ backgroundColor: `rgba(${service.accentRgb}, 0.14)` }}
+                />
+                <div className="relative flex items-center justify-between gap-4">
+                  <span
+                    className="inline-flex h-11 w-11 items-center justify-center rounded-2xl border bg-white/75 shadow-sm"
+                    style={{ borderColor: `rgba(${service.accentRgb}, 0.2)`, color: service.accent }}
+                  >
+                    <Icon className="h-5 w-5" strokeWidth={1.8} />
+                  </span>
+                  <span className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#0b1d3a]/45">
+                    {service.label}
+                  </span>
+                </div>
+
+                <div className="relative mt-9">
+                  <h3 className="max-w-lg text-2xl font-semibold leading-[1.12] tracking-[-0.035em] text-[#0b1d3a] sm:text-[2rem]">
+                    {service.title}
+                  </h3>
+                  <p className="mt-4 max-w-lg text-sm leading-7 text-[#0b1d3a]/62">
+                    {service.description}
+                  </p>
+                  <p className="mt-5 border-l-2 pl-4 text-sm font-semibold text-[#0b1d3a]/80" style={{ borderColor: service.accent }}>
+                    {service.promise}
+                  </p>
+                </div>
+
+                <ul className="relative mt-7 grid gap-3 border-t border-[#0b1d3a]/8 pt-6 sm:grid-cols-2">
+                  {service.activities.slice(0, 4).map((activity) => (
+                    <li key={activity} className="flex items-start gap-2.5 text-xs leading-5 text-[#0b1d3a]/62">
+                      <Check className="mt-0.5 h-3.5 w-3.5 shrink-0" style={{ color: service.accent }} strokeWidth={2.3} />
+                      {activity}
+                    </li>
+                  ))}
+                </ul>
+
+                <button
+                  type="button"
+                  onClick={() => setActiveService(service)}
+                  className="group/action relative mt-auto inline-flex items-center gap-2 self-start pt-8 text-[10px] font-black uppercase tracking-[0.18em] text-[#0b1d3a]"
+                >
+                  Ver alcance
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/action:-translate-y-0.5 group-hover/action:translate-x-0.5" />
+                </button>
+              </motion.article>
+            );
+          })}
         </motion.div>
       </div>
 
@@ -207,62 +208,39 @@ export const Services = ({ mode }: { mode: SiteMode }) => {
           <>
             <div
               className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full blur-3xl"
-              style={{
-                background: `radial-gradient(circle, rgba(${activeService.accentRgb}, 0.25), transparent 70%)`,
-              }}
+              style={{ background: `rgba(${activeService.accentRgb}, 0.2)` }}
             />
-
-            <div className="relative flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-              <div className="min-w-0">
-                <span
-                  className="text-[10px] font-black uppercase tracking-[0.3em]"
-                  style={{ color: activeService.accent }}
-                >
-                  Actividades incluidas
+            <div className="relative flex items-start justify-between gap-5">
+              <div>
+                <span className="text-[10px] font-black uppercase tracking-[0.25em]" style={{ color: activeService.accent }}>
+                  Alcance del servicio
                 </span>
-                <h3 className="mt-3 text-2xl font-black uppercase tracking-tight text-white sm:text-3xl">
-                  {activeService.label}
+                <h3 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+                  {activeService.title}
                 </h3>
-                <p className="mt-3 text-sm text-slate-400 sm:text-base">
-                  {activeService.description}
-                </p>
+                <p className="mt-3 max-w-xl text-sm leading-6 text-white/55">{activeService.description}</p>
               </div>
               <button
                 type="button"
                 onClick={() => setActiveService(null)}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white hover:bg-white/12"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition hover:bg-white/12"
                 aria-label="Cerrar"
               >
-                ×
+                <X className="h-4 w-4" />
               </button>
             </div>
 
-            <ul className="relative mt-8 space-y-3">
-              {activeService.activities.map((activity, i) => (
-                <li
-                  key={activity}
-                  className="flex items-start gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] p-4"
-                >
-                  <span
-                    className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-xs font-black text-white"
-                    style={{
-                      background: `rgba(${activeService.accentRgb}, 0.15)`,
-                      color: activeService.accent,
-                    }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-sm text-slate-200 sm:text-base">{activity}</span>
+            <ul className="relative mt-8 grid gap-3 sm:grid-cols-2">
+              {activeService.activities.map((activity) => (
+                <li key={activity} className="flex items-start gap-3 rounded-xl border border-white/[0.07] bg-white/[0.035] p-4 text-sm leading-6 text-white/75">
+                  <Check className="mt-1 h-4 w-4 shrink-0" style={{ color: activeService.accent }} />
+                  {activity}
                 </li>
               ))}
             </ul>
 
-            <div className="relative mt-10 flex flex-col gap-3 sm:flex-row">
-              <button
-                type="button"
-                onClick={() => setActiveService(null)}
-                className="btn-ghost-light flex-1 sm:flex-none"
-              >
+            <div className="relative mt-9 flex flex-col gap-3 sm:flex-row">
+              <button type="button" onClick={() => setActiveService(null)} className="btn-ghost-light flex-1 sm:flex-none">
                 Cerrar
               </button>
               <a
@@ -270,12 +248,9 @@ export const Services = ({ mode }: { mode: SiteMode }) => {
                 target="_blank"
                 rel="noreferrer"
                 className="btn-accent flex-1 sm:flex-none"
-                style={{
-                  background: `linear-gradient(135deg, ${activeService.accent}, rgba(${activeService.accentRgb}, 0.75))`,
-                  boxShadow: `0 12px 32px rgba(${activeService.accentRgb}, 0.3)`,
-                }}
+                style={{ backgroundColor: activeService.accent }}
               >
-                Agendar reunión
+                Hablemos de tu proyecto
               </a>
             </div>
           </>

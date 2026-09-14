@@ -15,6 +15,10 @@ const baseConfig = {
         protocol: "https",
         hostname: "www.gstatic.com",
       },
+      {
+        protocol: "https",
+        hostname: "www.google.com",
+      },
     ],
   },
 

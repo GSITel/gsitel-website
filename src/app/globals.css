@@ -294,55 +294,6 @@
     user-select: none;
   }
 
-  .software-partnership-steps {
-    position: relative;
-  }
-
-  .software-partnership-steps::before {
-    position: absolute;
-    top: 34px;
-    bottom: 34px;
-    left: 34px;
-    width: 1px;
-    background: rgba(121, 228, 242, 0.38);
-    content: "";
-  }
-
-  .software-partnership-step-number {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    min-height: 40px;
-    color: #79e4f2;
-    font-size: 0.875rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-  }
-
-  .software-partnership-step-number span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(121, 228, 242, 0.72);
-    border-radius: 999px;
-    background: #071b38;
-  }
-
-  @media (max-width: 639px) {
-    .software-partnership-steps::before {
-      top: 34px;
-      bottom: 34px;
-      left: 19px;
-    }
-
-    .software-partnership-step-number {
-      padding-left: 0;
-    }
-  }
-
   .quiet-texture {
     background-image: radial-gradient(
       circle at 1px 1px,

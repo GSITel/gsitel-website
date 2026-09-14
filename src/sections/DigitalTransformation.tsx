@@ -89,6 +89,15 @@ const businessCaseImages: Record<string, string> = {
   Manufactura: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=900&q=80",
 };
 
+const getProviderLogoUrl = (link: string) => {
+  try {
+    const hostname = new URL(link).hostname.replace(/^www\./, "");
+    return `https://www.google.com/s2/favicons?domain=${hostname}&sz=128`;
+  } catch {
+    return "https://www.google.com/s2/favicons?domain=gsitelservices.com&sz=128";
+  }
+};
+
 const phase2GraphicImages = {
   software: [
     strategyWorkflows,
@@ -662,13 +671,46 @@ function SoftwareGrowthStrategy() {
                   </div>
                   <span className="inline-flex w-fit items-center gap-2 rounded-full border border-[#7dd3fc]/25 bg-[#7dd3fc]/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.14em] text-[#b8edff]"><Sparkles className="h-3.5 w-3.5" aria-hidden="true" /> Ruta recomendada</span>
                 </div>
-                <div className="mt-5 grid gap-2 sm:grid-cols-2">
-                  {selected.solutions.slice(0, 4).map((solution) => (
-                    <a key={solution.name} href={solution.link} target="_blank" rel="noreferrer" className="group rounded-xl border border-white/10 bg-white/[0.05] p-3 transition hover:border-[#7dd3fc]/50 hover:bg-white/[0.09]">
-                      <span className="flex items-start justify-between gap-2 text-sm font-bold text-white"><span>{solution.name}</span><ArrowRight className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#7dd3fc] transition group-hover:translate-x-1" aria-hidden="true" /></span>
-                      <span className="mt-1 block text-xs leading-5 text-slate-400">{solution.summary}</span>
-                    </a>
-                  ))}
+                <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                  {selected.solutions.slice(0, 4).map((solution) => {
+                    const providerLogo = getProviderLogoUrl(solution.link);
+
+                    return (
+                      <a
+                        key={solution.name}
+                        href={solution.link}
+                        target={solution.link.startsWith("#") ? undefined : "_blank"}
+                        rel={solution.link.startsWith("#") ? undefined : "noreferrer"}
+                        aria-label={`Ver solución: ${solution.name}`}
+                        className="group relative isolate overflow-hidden rounded-2xl border border-white/10 bg-[#122544] transition duration-300 hover:-translate-y-1 hover:border-[#7dd3fc]/60 hover:shadow-[0_16px_35px_rgba(0,0,0,0.24)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#7dd3fc]"
+                      >
+                        <div className="relative flex h-24 items-center justify-center overflow-hidden bg-[radial-gradient(circle_at_50%_30%,rgba(125,211,252,0.22),transparent_58%),linear-gradient(135deg,#15345a,#08162c)]">
+                          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_55%)]" />
+                          <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-white p-2 shadow-[0_8px_20px_rgba(0,0,0,0.24)] transition duration-300 group-hover:scale-110">
+                            <Image
+                              src={providerLogo}
+                              alt={`Logo de ${solution.provider}`}
+                              width={48}
+                              height={48}
+                              unoptimized
+                              className="h-10 w-10 object-contain"
+                            />
+                          </div>
+                        </div>
+                        <div className="p-4">
+                          <span className="mb-2 block text-[9px] font-black uppercase tracking-[0.16em] text-[#7dd3fc]">
+                            {solution.provider}
+                          </span>
+                          <span className="flex items-start justify-between gap-2 text-sm font-bold text-white">
+                            <span>{solution.name}</span>
+                            <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-[#7dd3fc] transition group-hover:translate-x-1" aria-hidden="true" />
+                          </span>
+                          <span className="mt-2 block text-xs leading-5 text-slate-400">{solution.summary}</span>
+                          <span className="mt-3 block text-[9px] font-black uppercase tracking-[0.16em] text-[#7dd3fc]">Abrir solución</span>
+                        </div>
+                      </a>
+                    );
+                  })}
                 </div>
                 <div className="mt-5 flex flex-col gap-3 border-t border-white/10 pt-5 sm:flex-row sm:items-center sm:justify-between">
                   <p className="flex items-center gap-2 text-xs font-semibold text-slate-300"><Check className="h-4 w-4 text-[#7dd3fc]" aria-hidden="true" /> Diagnóstico y propuesta a tu medida</p>

@@ -14,6 +14,7 @@ import type { SiteMode } from "@/lib/siteMode";
 import { AnimatePresence, motion } from "framer-motion";
 import { useHydratedReducedMotion } from "@/lib/useHydratedReducedMotion";
 import {
+  Apple,
   ArrowLeft,
   ArrowRight,
   Atom,
@@ -28,6 +29,7 @@ import {
   LayoutDashboard,
   Link2,
   Monitor,
+  Play,
   Search,
   Smartphone,
   Sprout,
@@ -153,26 +155,41 @@ const ProjectSelector = ({
 const ProjectGallery = ({
   images,
   projectTitle,
+  phoneGallery = false,
   onImageOpen,
 }: {
   images: ProjectDetailImage[];
   projectTitle: string;
+  phoneGallery?: boolean;
   onImageOpen: (image: ProjectDetailImage) => void;
 }) => (
-  <div className="grid min-w-0 grid-cols-2 gap-2.5 sm:gap-3">
-    {images.slice(0, 4).map((imageItem, imageIndex) => {
+  <div
+    className={
+      phoneGallery
+        ? "grid min-w-0 grid-cols-2 gap-3 sm:grid-cols-6 lg:grid-cols-10"
+        : "grid min-w-0 grid-cols-2 gap-2.5 sm:gap-3"
+    }
+  >
+    {images.slice(0, phoneGallery ? images.length : 4).map((imageItem, imageIndex) => {
       const isHeroImage = imageIndex === 0;
-      const isLastVisible = imageIndex === Math.min(images.length, 4) - 1;
-      const hiddenCount = isLastVisible ? Math.max(images.length - 4, 0) : 0;
+      const visibleImageCount = phoneGallery ? images.length : 4;
+      const isLastVisible = imageIndex === Math.min(images.length, visibleImageCount) - 1;
+      const hiddenCount = isLastVisible ? Math.max(images.length - visibleImageCount, 0) : 0;
+      const isPhoneImage = phoneGallery && imageItem.format !== "screen";
+      const galleryAspectClass = isPhoneImage
+        ? "aspect-[9/19] sm:col-span-2 lg:col-span-2 !rounded-[1.65rem] border-[5px] border-[#0b1d3a] bg-white shadow-[0_18px_38px_rgba(11,29,58,0.16)]"
+        : phoneGallery
+          ? "col-span-2 aspect-[16/9] sm:col-span-3 lg:col-span-5"
+        : isHeroImage
+          ? "col-span-2 aspect-[16/8.3]"
+          : "aspect-[4/3]";
 
       return (
         <motion.button
           key={`${projectTitle}-${imageItem.alt}`}
           type="button"
           onClick={() => onImageOpen(imageItem)}
-          className={`group relative overflow-hidden rounded-[1.25rem] border border-[#0b1d3a]/10 bg-[#eef3ff] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f9edb] ${
-            isHeroImage ? "col-span-2 aspect-[16/8.3]" : "aspect-[4/3]"
-          }`}
+          className={"group relative overflow-hidden rounded-[1.25rem] border border-[#0b1d3a]/10 bg-[#eef3ff] text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f9edb] " + galleryAspectClass}
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -185,8 +202,8 @@ const ProjectGallery = ({
             alt={imageItem.alt}
             fill
             loading="lazy"
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
-            sizes={isHeroImage ? "(max-width: 1024px) 100vw, 60vw" : "(max-width: 640px) 50vw, 30vw"}
+            className={isPhoneImage ? "object-contain p-0.5 transition-transform duration-700 ease-out group-hover:scale-[1.025]" : "object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"}
+            sizes={isPhoneImage ? "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 14vw" : phoneGallery ? "(max-width: 640px) 100vw, 34vw" : isHeroImage ? "(max-width: 1024px) 100vw, 60vw" : "(max-width: 640px) 50vw, 30vw"}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#071425]/35 via-transparent to-transparent opacity-40 transition-opacity group-hover:opacity-70" />
           <span className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/50 bg-white/85 text-[#0b1d3a] opacity-0 shadow-lg backdrop-blur transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
@@ -300,7 +317,7 @@ const ProjectCaseStudy = ({
       {isFeatured && (
         <div className="mt-5 flex items-center gap-3 rounded-2xl border border-[#2f9edb]/20 bg-[#2f9edb]/[0.07] px-4 py-3 text-[10px] font-black uppercase tracking-[0.14em] text-[#0b6092]">
           <span className="h-2 w-2 rounded-full bg-[#2f9edb] shadow-[0_0_0_5px_rgba(47,158,219,0.12)]" />
-          Diseño de reservas deportivas, pensado para móvil
+          App móvil y plataforma web conectadas en una sola experiencia
         </div>
       )}
 
@@ -308,6 +325,7 @@ const ProjectCaseStudy = ({
         <ProjectGallery
           images={galleryImages}
           projectTitle={project.title}
+          phoneGallery={project.galleryMode === "phone"}
           onImageOpen={onImageOpen}
         />
 
@@ -340,6 +358,53 @@ const ProjectCaseStudy = ({
                 {project.projectUrlLabel ?? "Ver proyecto"}
                 <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
               </a>
+            )}
+            {project.appLinks && (
+              <div className="mt-5 border-t border-[#0b1d3a]/10 pt-5">
+                <p className="text-[9px] font-black uppercase tracking-[0.22em] text-[#0b1d3a]/45">
+                  Descargar la app
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2.5">
+                  {project.appLinks.android && (
+                    <a
+                      href={project.appLinks.android}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Descargar CUADRAI en Google Play"
+                      className="group inline-flex min-w-[142px] items-center gap-2.5 rounded-xl bg-[#0b1d3a] px-3.5 py-2.5 text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#132b50] hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f9edb]"
+                    >
+                      <Play className="h-5 w-5 fill-current" aria-hidden="true" />
+                      <span className="text-left leading-none">
+                        <span className="block text-[8px] font-semibold uppercase tracking-[0.08em] text-white/55">
+                          Disponible en
+                        </span>
+                        <span className="mt-1 block text-xs font-black tracking-tight">
+                          Google Play
+                        </span>
+                      </span>
+                    </a>
+                  )}
+                  {project.appLinks.appStore && (
+                    <a
+                      href={project.appLinks.appStore}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label="Descargar CUADRAI en App Store"
+                      className="group inline-flex min-w-[142px] items-center gap-2.5 rounded-xl bg-[#0b1d3a] px-3.5 py-2.5 text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#132b50] hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f9edb]"
+                    >
+                      <Apple className="h-5 w-5" aria-hidden="true" />
+                      <span className="text-left leading-none">
+                        <span className="block text-[8px] font-semibold uppercase tracking-[0.08em] text-white/55">
+                          Descárgala en
+                        </span>
+                        <span className="mt-1 block text-xs font-black tracking-tight">
+                          App Store
+                        </span>
+                      </span>
+                    </a>
+                  )}
+                </div>
+              </div>
             )}
             <div className="mt-6 border-t border-[#0b1d3a]/10 pt-5">
               <p className="text-[9px] font-black uppercase tracking-[0.22em] text-[#0b1d3a]/45">
