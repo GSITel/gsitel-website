@@ -1,0 +1,74 @@
+.showcase {
+  --process-ink: #12375f;
+  --process-muted: #526d89;
+  --process-blue: #2268d8;
+  --process-line: #dce8f7;
+  width: 100%;
+  max-width: 570px;
+  margin: auto;
+  color: var(--process-ink);
+}
+.heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 8px; }
+.kicker { font-size: 10px; font-weight: 800; letter-spacing: .14em; }
+.playback { display: flex; align-items: center; justify-content: center; gap: 5px; min-height: 44px; padding: 0 8px; font-size: 11px; color: var(--process-muted); border-radius: 8px; }
+.playback:hover { background: #ffffff90; }
+.playback:disabled { cursor: default; }
+.playback:focus-visible, .step:focus-visible { outline: 2px solid var(--process-blue); outline-offset: 3px; }
+.scene { position: relative; padding: 18px 18px 44px 8px; }
+.backplate { position: absolute; inset: 22px 4px 49px 27px; transform: rotate(4deg); border: 1px solid white; border-radius: 26px; background: linear-gradient(135deg, #d9ebff, #f6faff); box-shadow: 0 18px 45px #1c488714; }
+.window { position: relative; overflow: hidden; border: 1px solid white; border-radius: 22px; background: #ffffffed; box-shadow: 0 22px 55px #1c48871c, inset 0 1px 0 white; }
+.toolbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 15px 18px; border-bottom: 1px solid #e7eff9; color: var(--process-muted); font-size: 11px; }
+.windowDots { display: flex; gap: 4px; }
+.windowDots i { width: 6px; height: 6px; border-radius: 50%; background: #d4e2f3; }
+.windowDots i:first-child { background: #84d3e6; }
+.windowBody { padding: 23px; }
+.phaseHeading { display: flex; gap: 12px; align-items: center; }
+.phaseIcon { display: grid; place-items: center; width: 48px; height: 48px; background: #ebf3ff; color: var(--process-blue); border: 1px solid #d9e9ff; border-radius: 15px; }
+.phaseNumber { font-size: 9px; font-weight: 700; letter-spacing: .16em; color: var(--process-muted); }
+.phaseTitle { margin: 3px 0 0; font-size: clamp(17px, 1.8vw, 23px); font-weight: 750; line-height: 1.2; letter-spacing: -.035em; }
+.diagram { margin-top: 24px; }
+.nodes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.node { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; height: 83px; border: 1px solid var(--process-line); border-radius: 13px; color: var(--process-blue); background: linear-gradient(145deg, white, #f0f6ff); box-shadow: 0 5px 10px #1c488708; }
+.node span { font-size: 11px; color: var(--process-ink); font-weight: 600; }
+.connector { display: flex; align-items: center; justify-content: center; gap: 8px; height: 34px; color: #4c92e4; }
+.connector span { height: 1px; width: 27%; background: linear-gradient(90deg, #e2ecfa, #86bae8); }
+.blueprint { padding: 14px; min-height: 119px; border: 1px solid #cfe2fc; border-radius: 13px; background-color: #f4f8ff; background-image: radial-gradient(#cbdcf1 .65px, transparent .65px); background-size: 10px 10px; }
+.blueprintHeader { display: flex; gap: 7px; align-items: center; color: #285992; font-size: 11px; font-weight: 650; }
+.flow { display: flex; align-items: center; justify-content: space-between; gap: 5px; margin-top: 18px; color: #6b99d0; }
+.flow span { padding: 10px 8px; text-align: center; background: white; border: 1px solid #d2e2f7; box-shadow: 0 3px 6px #1c488708; border-radius: 7px; font-size: 11px; color: var(--process-ink); flex: 1; }
+.code { display: flex; flex-direction: column; margin-top: 12px; font: 10px/1.7 monospace; color: #426187; }
+.code b { color: #2466c5; font-weight: 500; }
+.code em { color: #417567; font-style: normal; }
+.checks { margin-top: 10px; display: grid; gap: 4px; }
+.checks span { display: flex; align-items: center; gap: 6px; font-size: 10px; }
+.checks svg { color: #16866e; }
+.result { display: flex; align-items: center; gap: 7px; margin-top: 16px; font-size: 10px; color: #3b6475; }
+.result > span { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: #e1f7f0; color: #16866e; flex-shrink: 0; }
+.artifact { position: absolute; bottom: 14px; right: 0; display: flex; gap: 10px; align-items: center; padding: 13px 18px; border: 1px solid white; border-radius: 15px; background: #faffff; box-shadow: 0 12px 30px #1c488717; transform: rotate(-2deg); }
+.artifactIcon { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: #e8f7fb; color: #217790; }
+.artifact div > span { display: block; font-size: 8px; font-weight: 700; letter-spacing: .14em; color: var(--process-muted); }
+.artifact strong { display: block; margin-top: 3px; font-size: 11px; font-weight: 650; }
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding: 5px 5px 0; }
+.step { position: relative; display: flex; align-items: center; flex-direction: column; gap: 7px; padding: 10px 1px 14px; min-height: 67px; color: var(--process-muted); font-size: 11px; font-weight: 600; border-radius: 9px 9px 0 0; }
+.step:hover { background: #ffffff80; }
+.stepNumber { display: grid; place-items: center; height: 22px; width: 22px; border: 1px solid #c1d3eb; border-radius: 50%; font-size: 10px; }
+.active { color: var(--process-blue); }
+.active .stepNumber { background: var(--process-blue); color: white; border-color: var(--process-blue); box-shadow: 0 3px 10px #2268d82b; }
+.track { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: #d6e2f3; overflow: hidden; }
+.progress, .progressStatic { display: block; height: 100%; background: var(--process-blue); transform-origin: left; }
+.progress { animation: process-progress 5s linear forwards; }
+.description { min-height: 85px; padding: 15px 8px 0; }
+.description p { margin: 0; font-size: 13px; line-height: 1.7; color: var(--process-muted); }
+@keyframes process-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (max-width: 420px) {
+  .windowBody { padding: 16px; }
+  .scene { padding-right: 10px; }
+  .kicker { font-size: 8px; letter-spacing: .1em; }
+  .nodes { gap: 7px; }
+  .node { height: 74px; }
+  .node span, .step { font-size: 10px; }
+  .blueprint { padding: 10px; }
+  .artifact { padding: 10px 12px; }
+  .description { min-height: 105px; }
+}
+@media (prefers-reduced-motion: reduce) { .progress { animation: none; } }

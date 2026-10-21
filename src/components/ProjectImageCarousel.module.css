@@ -1,0 +1,16 @@
+.carousel { min-width: 0; width: 100%; }
+.viewport { display: flex; width: 100%; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 16px; }
+.viewport::-webkit-scrollbar { display: none; }
+.slide { position: relative; flex: 0 0 100%; min-width: 0; aspect-ratio: 4 / 3; scroll-snap-align: start; scroll-snap-stop: always; overflow: hidden; background: #edf3fc; border: 1px solid #dce6f3; border-radius: 16px; }
+.slide.phone { aspect-ratio: auto; height: clamp(360px, 65svh, 620px); background: #f3f6fc; }
+.image { object-fit: contain; object-position: center; padding: 8px; }
+.expand { position: absolute; right: 12px; bottom: 12px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #fffffff0; color: #24466d; box-shadow: 0 3px 12px #24466d18; }
+.controls { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 14px; }
+.controls button { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid #cbd9ec; background: white; color: #24466d; }
+.controls button:disabled { opacity: .35; }
+.controls p { font-size: 13px; font-weight: 650; color: #24466d; font-variant-numeric: tabular-nums; }
+.controls p span { color: #71869f; font-weight: 400; }
+.caption { min-height: 36px; margin-top: 8px; font-size: 12px; line-height: 1.5; color: #59728e; text-align: center; }
+.desktop { display: none; }
+.slide:focus-visible, .controls button:focus-visible { outline: 2px solid #2268d8; outline-offset: -3px; }
+@media (min-width: 768px) { .carousel { display: none; } .desktop { display: block; min-width: 0; } }

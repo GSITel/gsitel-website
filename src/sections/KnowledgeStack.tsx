@@ -316,19 +316,17 @@ export const KnowledgeStack = ({ mode: _mode }: { mode: SiteMode }) => {
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
 
-            <p className="section-eyebrow-dark">Conocimientos</p>
+            <p className="section-eyebrow-dark">Capacidades técnicas</p>
 
             <h2 className="section-title-dark">
 
-              Stack para construir software real
+              Tecnología al servicio del producto
 
             </h2>
 
             <p className="section-desc-dark">
 
-              Tecnologías que dominamos para llevar tu producto de la idea a
-
-              producción con calidad y velocidad.
+              Elegimos las herramientas según el producto, sus integraciones y su evolución.
 
             </p>
 
@@ -340,7 +338,7 @@ export const KnowledgeStack = ({ mode: _mode }: { mode: SiteMode }) => {
 
             >
 
-              Hablemos del stack
+              Consultar una necesidad técnica
 
             </a>
 

@@ -1,0 +1,4 @@
+.mascot { display: block; width: 100%; height: auto; overflow: visible; }
+.creature { animation: character-bob 3.8s ease-in-out infinite; transform-origin: center; }
+@keyframes character-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@media (prefers-reduced-motion: reduce) { .creature { animation: none; } }

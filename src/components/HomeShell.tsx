@@ -11,7 +11,6 @@ import { WorkProcess } from "@/sections/WorkProcess";
 import { DarkSectionsShell } from "@/components/DarkSectionsShell";
 import { CtaFooterShell } from "@/components/CtaFooterShell";
 import { Footer } from "@/sections/Footer";
-import { SoftwarePartnership } from "@/sections/SoftwarePartnership";
 import { scrollToSection } from "@/lib/smoothSectionScroll";
 
 const DigitalTransformation = dynamic(
@@ -152,13 +151,17 @@ export const HomeShell = () => {
         </div>
         <ModeAwareSection mode={mode}>
           <DarkSectionsShell mode={mode}>
-            <DigitalTransformation mode={mode} />
+            {mode === "telecom" && <DigitalTransformation mode={mode} />}
             <Services mode={mode} />
-            {mode === "software" && <SoftwarePartnership />}
-            <WorkProcess mode={mode} />
           </DarkSectionsShell>
-          {mode === "software" && <KnowledgeStack mode={mode} />}
           <Projects mode={mode} />
+          <WorkProcess mode={mode} />
+          {mode === "software" && (
+            <details className="technical-details">
+              <summary>Ver nuestras capacidades técnicas</summary>
+              <KnowledgeStack mode={mode} />
+            </details>
+          )}
           <Testimonials mode={mode} />
           <CtaFooterShell>
             <Contact mode={mode} />

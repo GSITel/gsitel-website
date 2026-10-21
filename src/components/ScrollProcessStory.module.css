@@ -1,0 +1,55 @@
+.story { position: relative; isolation: isolate; padding: 64px 24px; scroll-margin-top: 90px; background: linear-gradient(180deg, #eaeefe, #f7f9ff 30%, #eaeefe); }
+.sticky { max-width: 1280px; margin: auto; }
+.header { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; }
+.header h2 { max-width: 740px; }
+.scrollHint { display: none; align-items: center; gap: 9px; color: #526b85; font-size: 12px; white-space: nowrap; }
+.cinema, .progress { display: none; }
+.fallback { display: grid; gap: 56px; margin-top: 40px; }
+.simpleStep { display: grid; gap: 24px; align-items: center; }
+.simpleStep > div { min-width: 0; }
+/* Keep artwork unfiltered so labels remain sharp during scroll. */
+.phaseArtwork { position: relative; width: 100%; }
+.phaseArtwork .phaseCharacter { position: absolute; right: 0; bottom: 1%; z-index: 5; width: clamp(90px, 22%, 145px); height: auto; pointer-events: none; filter: drop-shadow(0 8px 10px #20467512); }
+.phase { font-size: 11px; font-weight: 650; letter-spacing: .18em; color: #1b5aa6; }
+.phases button:focus-visible, .link:focus-visible { outline: 2px solid #2268d8; outline-offset: 4px; }
+@media (max-width: 767px) {
+  .story { padding: 48px 20px; }
+  .header { display: block; }
+  .fallback { gap: 44px; margin-top: 28px; }
+  .simpleStep { gap: 18px; }
+  .phaseArtwork > [role="img"] { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; aspect-ratio: auto; }
+  .phaseArtwork > [role="img"] > div { position: relative !important; inset: auto !important; width: 100% !important; height: auto !important; min-width: 0; transform: none !important; }
+  .phaseArtwork > [role="img"] > div:empty { display: none; }
+  .phaseArtwork .phaseCharacter { position: relative; display: block; width: 95px; margin: 8px 0 0 auto; right: auto; bottom: auto; }
+}
+@media (min-width: 768px) { .simpleStep { grid-template-columns: 1.2fr 1fr; gap: 48px; } }
+@media (min-width: 1024px) and (min-height: 720px) {
+  .story { height: 320svh; padding: 0 40px; scroll-margin-top: 0; }
+  .story .sticky { position: sticky; top: 88px; height: calc(100svh - 88px); display: flex; flex-direction: column; justify-content: center; padding: 24px 0 30px; }
+  .story .header h2 { font-size: clamp(30px, 3vw, 44px); }
+  .story .scrollHint { display: flex; }
+  .story .cinema { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .8fr); gap: clamp(32px, 5vw, 80px); align-items: center; flex: 1; min-height: 0; max-height: 610px; padding-block: 24px; }
+  .story .fallback { display: none; }
+  .scene { position: relative; display: flex; flex-direction: column; justify-content: center; min-width: 0; height: 100%; max-height: 540px; border: 1px solid #ffffffd9; border-radius: 28px; background: radial-gradient(ellipse at 35% 30%, #faffff, #e4edff 90%); box-shadow: 0 24px 65px #244d8112, inset 0 1px 0 white; }
+  .sceneLabel { padding: 22px 26px 0; font-size: 9px; letter-spacing: .15em; font-weight: 650; color: #607996; }
+  .visuals { position: relative; flex: 1; min-height: 0; margin: 0 14px; }
+  .visual { position: absolute; inset: 0; display: flex; align-items: center; }
+  .visual > div { max-height: 100%; }
+  .sceneFooter { display: flex; justify-content: space-between; gap: 20px; padding: 10px 26px 22px; font-size: 9px; letter-spacing: .12em; color: #607996; }
+  .sceneFooter span:last-child { font-variant-numeric: tabular-nums; color: #1b5aa6; }
+  .narrative { min-width: 0; }
+  .copyStack { position: relative; min-height: 250px; }
+  .copy { position: absolute; inset: 0; }
+  .copy h3 { margin-top: 15px; font-size: clamp(29px, 2.9vw, 40px); font-weight: 600; line-height: 1.15; letter-spacing: -.035em; color: #0b1d3a; }
+  .copy p { margin-top: 20px; max-width: 380px; font-size: 16px; line-height: 1.8; color: #486481; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px 14px; margin-top: 24px; color: #466482; font-size: 11px; }
+  .tags span { border-bottom: 1px solid #c6d9ec; padding-bottom: 5px; }
+  .phases { display: grid; gap: 4px; margin-top: 22px; border-top: 1px solid #cedced; padding-top: 16px; }
+  .phases button { display: flex; align-items: center; gap: 14px; min-height: 44px; text-align: left; font-size: 12px; color: #60758c; transition: color .2s; }
+  .phases button > span { font-size: 10px; font-variant-numeric: tabular-nums; }
+  .phases button[aria-current="step"] { color: var(--story-accent); font-weight: 700; }
+  .phases button[aria-current="step"] > span { border-bottom: 2px solid currentColor; }
+  .link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 12px; color: #31547c; font-size: 12px; }
+  .story .progress { display: block; position: absolute; bottom: 12px; left: 0; right: 0; height: 2px; background: #d1deef; }
+  .progress > span { display: block; height: 100%; background: var(--story-accent); transform-origin: left; }
+}

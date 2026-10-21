@@ -3,34 +3,11 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useHydratedReducedMotion } from "@/lib/useHydratedReducedMotion";
+import { SoftwareProcessShowcase } from "@/components/SoftwareProcessShowcase";
 
-import automationFlow from "@/assets/illustrations/hero-automation-flow.png";
-import automationOutput from "@/assets/illustrations/hero-automation-output.png";
-import crmSystem from "@/assets/illustrations/hero-crm-system.png";
 import telecomIntegrations from "@/assets/illustrations/hero-telecom-integrations.png";
 import telecomKpis from "@/assets/illustrations/hero-telecom-kpis.png";
 import telecomMonitoring from "@/assets/illustrations/hero-telecom-monitoring.png";
-
-const visualCards = [
-  {
-    alt: "Flujo de automatización conectado",
-    className:
-      "left-[0%] top-[0%] z-20 w-[42%] -rotate-[5deg] sm:left-[1%] sm:top-[-2%] sm:w-[40%] md:left-[3%] md:w-[38%]",
-    image: automationFlow,
-  },
-  {
-    alt: "Integraciones sincronizadas",
-    className:
-      "bottom-[0%] right-[0%] z-20 w-[42%] rotate-[4deg] sm:bottom-[-2%] sm:right-[1%] sm:w-[40%] md:right-[3%] md:w-[38%]",
-    image: automationOutput,
-  },
-  {
-    alt: "Panel CRM minimalista",
-    className:
-      "left-[13%] top-[8%] z-0 w-[74%] -rotate-[2deg] sm:left-[14%] sm:top-[6%] sm:w-[72%] md:left-[16%] md:top-[5%] md:w-[68%]",
-    image: crmSystem,
-  },
-];
 
 const telecomVisualCards = [
   {
@@ -60,8 +37,9 @@ type HeroAutomationShowcaseProps = {
 export const HeroAutomationShowcase = ({
   variant = "software",
 }: HeroAutomationShowcaseProps) => {
-  const cards = variant === "telecom" ? telecomVisualCards : visualCards;
   const reduceMotion = useHydratedReducedMotion();
+
+  if (variant === "software") return <SoftwareProcessShowcase />;
 
   return (
     <div
@@ -79,7 +57,7 @@ export const HeroAutomationShowcase = ({
             : "bg-[radial-gradient(ellipse_at_center,rgba(29,111,255,0.17),transparent_68%)]"
         }`}
       />
-      {cards.map((card, index) => (
+      {telecomVisualCards.map((card, index) => (
         <div key={card.alt} className={`absolute ${card.className}`}>
           <motion.div
             className="overflow-hidden rounded-[1.15rem] border border-white/85 bg-white shadow-[0_18px_44px_rgba(28,72,135,0.15)] transition-shadow duration-500 hover:shadow-[0_28px_64px_rgba(28,72,135,0.22)] sm:rounded-[1.35rem]"

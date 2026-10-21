@@ -4,11 +4,6 @@ import avatar1 from "@/assets/avatars/avatar-1.png";
 import avatar2 from "@/assets/avatars/avatar-2.png";
 import avatar3 from "@/assets/avatars/avatar-3.png";
 import avatar4 from "@/assets/avatars/avatar-4.png";
-import avatar6 from "@/assets/avatars/avatar-6.png";
-import avatar7 from "@/assets/avatars/avatar-7.png";
-import avatar8 from "@/assets/avatars/avatar-8.png";
-import avatar9 from "@/assets/avatars/avatar-9.png";
-import { staggerContainer, staggerItem } from "@/components/MotionInView";
 import type { SiteMode } from "@/lib/siteMode";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
@@ -17,8 +12,9 @@ import Image from "next/image";
 type TestimonialTag = "Telecom" | "Software";
 
 type Testimonial = {
-  text: string;
-  imageSrc: string;
+  text?: string;
+  summary?: string;
+  imageSrc?: string;
   name: string;
   role: string;
   tag: TestimonialTag;
@@ -31,31 +27,27 @@ const tagStyles: Record<TestimonialTag, string> = {
 
 const softwareTestimonials: Testimonial[] = [
   {
-    text: "El dashboard centralizó operaciones dispersas. Hoy el equipo decide con la información correcta, sin perseguir hojas sueltas.",
-    imageSrc: avatar9.src,
-    name: "Andre Salas",
-    role: "Jefe de Operaciones · Servicios empresariales",
+    name: "Martín Tenemas",
+    role: "VSF · Villas Sin Fronteras",
+    summary: "Una web que dio mayor visibilidad a los proyectos de su ONG y facilitó que más personas conocieran su trabajo.",
     tag: "Software",
   },
   {
-    text: "Automatizar reportes y alertas nos dio trazabilidad real y mucho menos trabajo manual en cada cierre.",
-    imageSrc: avatar8.src,
-    name: "Juliana P.",
-    role: "Analista de Procesos · Servicios TI",
+    name: "Henry Valladares",
+    role: "V&A Profesionales",
+    summary: "Automatizamos la carga de comprobantes de las 13 empresas que gestiona: un trabajo de dos semanas pasó a resolverse en una hora. También desarrollamos su página web.",
     tag: "Software",
   },
   {
-    text: "La plataforma ordenó aprobaciones, responsables y tiempos. Ahora el flujo se entiende de punta a punta.",
-    imageSrc: avatar7.src,
-    name: "Renzo Vidal",
-    role: "PMO · Integrador TI",
+    name: "Fernando",
+    role: "Xtreme Fitness Sport",
+    summary: "La página web apoyó la campaña de apertura de su nuevo gimnasio en Pucallpa. Ahora desarrollamos un backoffice para la gestión de su empresa de gimnasios.",
     tag: "Software",
   },
   {
-    text: "La app móvil mejoró el registro de avances y evidencias sin agregar fricción al trabajo de campo.",
-    imageSrc: avatar6.src,
-    name: "Fiorella S.",
-    role: "Coordinadora de Campo · Infraestructura",
+    name: "Aaron Lezma",
+    role: "Publicidad · CuadrAI",
+    summary: "Publicista de CuadrAI, un proyecto que conecta la experiencia móvil con la operación de las reservas deportivas.",
     tag: "Software",
   },
 ];
@@ -105,58 +97,55 @@ export const Testimonials = ({ mode }: { mode: SiteMode }) => {
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="grid gap-6 border-b border-[#0b1d3a]/10 pb-9 lg:grid-cols-[1fr_auto] lg:items-end">
           <div>
-            <p className="section-eyebrow-light">Testimonios</p>
-            <h2 className="mt-4 max-w-3xl text-3xl font-semibold leading-[1.08] tracking-[-0.04em] text-[#06111f] sm:text-4xl lg:text-5xl">
+            <p className="section-eyebrow-light">{isTelecom ? "Testimonios" : "Clientes"}</p>
+            <h2 className="section-title-light max-w-3xl">
               {isTelecom
                 ? "Confianza que se sostiene en cada despliegue"
-                : "Cuando la tecnología funciona, se nota en el equipo"}
+                : "La experiencia de trabajar juntos"}
             </h2>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-[#0b1d3a]/62 sm:text-base">
               {isTelecom
                 ? "Orden, seguimiento y continuidad para operaciones de red exigentes."
-                : "Experiencias de equipos que hoy trabajan con más claridad, trazabilidad y control."}
+                : "Proyectos compartidos y mejoras concretas en la operación de nuestros clientes."}
             </p>
           </div>
           <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#0b1d3a]/38">
-            Experiencias de operación
+            {isTelecom ? "Experiencias de operación" : "Proyectos compartidos"}
           </p>
         </div>
 
         <motion.div
-          className="mt-8 grid gap-4 md:grid-cols-2"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
+          className={`mt-8 grid gap-4 ${isTelecom ? "md:grid-cols-2" : "md:grid-cols-2"}`}
         >
-          {testimonials.map(({ text, imageSrc, name, role, tag }) => (
+          {testimonials.map(({ text, summary, imageSrc, name, role, tag }) => (
             <motion.article
               key={`${name}-${role}`}
-              variants={staggerItem}
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
               whileHover={{ y: -3 }}
               transition={{ type: "spring", stiffness: 280, damping: 26 }}
               className="quiet-card group relative flex min-h-[230px] flex-col overflow-hidden rounded-[1.5rem] p-6 sm:p-7"
             >
               <div className="pointer-events-none absolute -right-8 -top-8 text-[#2f9edb]/[0.04] transition-colors duration-500 group-hover:text-[#2f9edb]/[0.075]">
-                <Quote className="h-28 w-28 fill-current" strokeWidth={1} />
+                {text && <Quote className="h-28 w-28 fill-current" strokeWidth={1} />}
               </div>
               <div className="relative flex items-center justify-between gap-3">
                 <span className={`inline-flex rounded-full border px-2.5 py-1 text-[9px] font-black uppercase tracking-[0.16em] ${tagStyles[tag]}`}>
                   {tag}
                 </span>
-                <Quote className="h-4 w-4 text-[#2f9edb]/45" aria-hidden="true" />
+                {text && <Quote className="h-4 w-4 text-[#2f9edb]/45" aria-hidden="true" />}
               </div>
-              <blockquote className="relative mt-5 max-w-2xl text-base font-medium leading-7 tracking-[-0.01em] text-[#0b1d3a]/82 sm:text-lg">
+              {text ? <blockquote className="relative mt-5 max-w-2xl text-base font-medium leading-7 tracking-[-0.01em] text-[#0b1d3a]/82 sm:text-lg">
                 “{text}”
-              </blockquote>
+              </blockquote> : <p className="relative mt-5 text-base leading-7 text-[#0b1d3a]/75">{summary}</p>}
               <div className="relative mt-auto flex items-center gap-3 pt-6">
-                <Image
+                {imageSrc ? <Image
                   src={imageSrc}
                   alt={name}
                   width={42}
                   height={42}
                   className="h-10 w-10 rounded-full border border-white shadow-sm"
-                />
+                /> : <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#1b5aa6]/15 bg-[#1b5aa6]/[0.06] text-xs font-semibold text-[#1b5aa6]" aria-hidden="true">{name.split(" ").map((part) => part[0]).slice(0, 2).join("")}</span>}
                 <div className="min-w-0">
                   <p className="truncate text-xs font-black tracking-tight text-[#0b1d3a]">{name}</p>
                   <p className="mt-0.5 truncate text-[11px] text-[#0b1d3a]/48">{role}</p>

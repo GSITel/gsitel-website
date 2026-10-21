@@ -4,7 +4,9 @@ import type { SiteMode } from "@/lib/siteMode";
 import { ClientLogoStrip } from "@/components/ClientLogoStrip";
 import { HeroAutomationShowcase } from "@/components/HeroAutomationShowcase";
 import { motion } from "framer-motion";
+import { ArrowRight, Check, ShieldCheck } from "lucide-react";
 import { useHydratedReducedMotion } from "@/lib/useHydratedReducedMotion";
+import styles from "./AboutHero.module.css";
 
 type AboutHeroProps = {
   mode: SiteMode;
@@ -24,11 +26,11 @@ type HeroConfig = {
 
 const heroCopy: Record<SiteMode, HeroConfig> = {
   software: {
-    eyebrow: "Software para operaciones críticas",
-    headline: "Sistemas que hacen avanzar tu operación.",
+    eyebrow: "",
+    headline: "De procesos complejos a software que funciona.",
     description:
-      "Diseñamos productos, automatizaciones e integraciones para ordenar procesos y acelerar decisiones.",
-    chips: ["Software a medida", "Automatización", "Integraciones"],
+      "Entendemos tus sistemas con ingeniería inversa, rediseñamos tus procesos y construimos el producto que tu operación necesita.",
+    chips: ["Procesos claros", "Sistemas conectados", "Software a medida"],
     primary: "Hablemos de tu proyecto",
     secondary: "Explorar servicios",
     overlay:
@@ -103,7 +105,7 @@ export const AboutHero = ({ mode }: AboutHeroProps) => {
             transition={{ duration: 0.82, ease: [0.22, 1, 0.36, 1] }}
           >
 
-            <div className="flex flex-wrap items-center gap-2">
+            {isTelecom && <div className="flex flex-wrap items-center gap-2">
               <div
                 className={`flex items-center gap-2 rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.14em] backdrop-blur ${
                   isTelecom
@@ -118,47 +120,49 @@ export const AboutHero = ({ mode }: AboutHeroProps) => {
                 />
                 <span className={isTelecom ? "!text-[#6e4a19]" : "!text-[#31547c]"}>{copy.eyebrow}</span>
               </div>
-            </div>
+            </div>}
 
-            <h1 className="mt-5 max-w-xl text-3xl font-black leading-[1.02] tracking-tight !text-[#0a2f5f] sm:text-4xl md:text-[2.55rem] lg:mt-6 lg:text-[3.35rem]">
-              {copy.headline}
+            <h1 className={isTelecom ? "mt-5 max-w-xl text-3xl font-black leading-[1.02] tracking-tight !text-[#0a2f5f] sm:text-4xl md:text-[2.55rem] lg:mt-6 lg:text-[3.35rem]" : styles.headline}>
+              {isTelecom ? copy.headline : <>De procesos complejos a <span>software que funciona.</span></>}
             </h1>
 
-            <p className="mt-4 max-w-lg text-sm leading-6 !text-[#486481] sm:text-base sm:leading-7 lg:mt-5 lg:text-lg">
+            <p className={isTelecom ? "mt-4 max-w-lg text-sm leading-6 !text-[#486481] sm:text-base sm:leading-7 lg:mt-5 lg:text-lg" : styles.intro}>
               {copy.description}
             </p>
 
-            <div className={`mt-5 flex flex-wrap gap-x-6 gap-y-3 border-y py-4 lg:mt-7 ${isTelecom ? "border-[#f39c36]/20" : "border-[#1d6fff]/15"}`}>
+            <div className={isTelecom ? "mt-5 flex flex-wrap gap-x-6 gap-y-3 border-y border-[#f39c36]/20 py-4 lg:mt-7" : styles.benefits}>
               {copy.chips.map((chip) => (
                 <span
                   key={chip}
-                  className={`border-l pl-3 text-[10px] font-black uppercase tracking-[0.16em] ${isTelecom ? "border-[#f39c36]/30 !text-[#6e4a19]" : "border-[#1d6fff]/25 !text-[#31547c]"}`}
+                  className={isTelecom ? "border-l border-[#f39c36]/30 pl-3 text-[10px] font-black uppercase tracking-[0.16em] !text-[#6e4a19]" : styles.benefit}
                 >
+                  {!isTelecom && <Check size={15} strokeWidth={2} aria-hidden="true" />}
                   {chip}
                 </span>
               ))}
             </div>
 
-            <div className="mt-5 flex flex-wrap items-center gap-3 lg:mt-7">
+            <div className={isTelecom ? "mt-5 flex flex-wrap items-center gap-3 lg:mt-7" : styles.actions}>
               <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLSdfgHkDApUgxqeuqpwoaJPVWo6nQjS7NI9wtpB_W7f0RCddpQ/viewform?usp=publish-editor"
                 target="_blank"
                 rel="noreferrer"
-                className={`btn relative w-full overflow-hidden rounded-xl px-5 py-3.5 text-sm !text-white transition duration-500 hover:-translate-y-0.5 sm:w-auto sm:text-base ${copy.button}`}
+                className={isTelecom ? `btn relative w-full overflow-hidden rounded-xl px-5 py-3.5 text-sm !text-white transition duration-500 hover:-translate-y-0.5 sm:w-auto sm:text-base ${copy.button}` : styles.primary}
               >
                 {copy.primary}
+                {!isTelecom && <ArrowRight size={18} aria-hidden="true" />}
               </a>
               <a
                 href="#servicios"
-                className={`btn w-full border px-5 py-3.5 text-sm transition sm:w-auto sm:text-base ${isTelecom ? "border-[#f39c36]/35 bg-white/55 !text-[#9a5b13] hover:bg-white/85" : "border-[#1d6fff]/30 bg-white/55 !text-[#174f91] hover:bg-white/85"}`}
+                className={isTelecom ? "btn w-full border border-[#f39c36]/35 bg-white/55 px-5 py-3.5 text-sm !text-[#9a5b13] transition hover:bg-white/85 sm:w-auto sm:text-base" : styles.secondary}
               >
                 {copy.secondary}
               </a>
             </div>
 
-            <div className="mt-5 flex max-w-lg items-start gap-3 text-[10px] font-semibold leading-4 text-[#60758c] lg:mt-7">
-              <span className={`mt-1 h-1.5 w-1.5 shrink-0 rounded-full ${isTelecom ? "bg-[#f39c36]" : "bg-cyan-300"}`} />
-              Equipo técnico involucrado desde el diagnóstico hasta la operación.
+            <div className={isTelecom ? "mt-5 flex max-w-lg items-start gap-3 text-[10px] font-semibold leading-4 text-[#60758c] lg:mt-7" : styles.reassurance}>
+              {isTelecom ? <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-[#f39c36]" /> : <ShieldCheck size={17} aria-hidden="true" />}
+              {isTelecom ? "Equipo técnico involucrado desde el diagnóstico hasta la operación." : "Un mismo equipo, del diagnóstico a la puesta en marcha."}
             </div>
           </motion.div>
         </div>

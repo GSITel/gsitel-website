@@ -36,8 +36,8 @@ export const Contact = ({ mode }: { mode: SiteMode }) => {
           />
           <div className="pointer-events-none absolute inset-x-12 top-0 h-px bg-gradient-to-r from-transparent via-[#79e4f2]/70 to-transparent" />
 
-          <div className="relative z-10 grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
-            <div className="max-w-3xl">
+          <div className="relative z-10 grid min-w-0 grid-cols-[minmax(0,1fr)] gap-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+            <div className="min-w-0 max-w-3xl">
               <div className="flex items-center gap-3">
                 <motion.span
                   className={`h-2 w-2 rounded-full ${isTelecom ? "bg-[#f39c36]" : "bg-[#79e4f2]"}`}
@@ -45,35 +45,35 @@ export const Contact = ({ mode }: { mode: SiteMode }) => {
                   transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
                 />
                 <p className="text-[10px] font-black uppercase tracking-[0.24em] text-white/55">
-                  {isTelecom ? "Operación de red" : "Conversemos"}
+                  {isTelecom ? "Operación de red" : "Contacto"}
                 </p>
               </div>
-              <h2 className="mt-6 text-3xl font-semibold leading-[1.06] tracking-[-0.045em] text-white sm:text-4xl lg:text-[3.3rem]">
+              <h2 className="section-title-dark break-words [overflow-wrap:anywhere] max-md:!text-[1.8rem]">
                 {isTelecom
                   ? "Una red exigente necesita decisiones claras."
-                  : "La próxima mejora de tu negocio puede empezar aquí."}
+                  : "Hablemos de tu proyecto"}
               </h2>
               <p className="mt-5 max-w-2xl text-sm leading-7 text-white/58 sm:text-base">
                 {isTelecom
                   ? "Cuéntanos el escenario. Te ayudamos a definir el alcance técnico y la mejor ruta de ejecución."
-                  : "Cuéntanos qué quieres resolver. Ordenamos la idea, definimos prioridades y te proponemos un siguiente paso concreto."}
+                  : "Cuéntanos qué necesitas mejorar. Evaluamos el contexto y acordamos el siguiente paso."}
               </p>
             </div>
 
-            <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col">
+            <div className="flex min-w-0 w-full flex-col gap-3 md:w-auto md:flex-row lg:flex-col">
               <a
                 href={meetingUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="group inline-flex min-w-[210px] items-center justify-center gap-3 rounded-xl bg-white px-5 py-3.5 text-[10px] font-black uppercase tracking-[0.17em] text-[#071b38] shadow-[0_14px_36px_rgba(0,0,0,0.2)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_rgba(0,0,0,0.3)]"
+                className="group inline-flex min-w-0 w-full items-center justify-center gap-3 rounded-xl bg-white px-4 py-3.5 text-center text-[11px] font-bold leading-5 tracking-wide text-[#071b38] shadow-[0_14px_36px_rgba(0,0,0,0.2)] transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_44px_rgba(0,0,0,0.3)] md:flex-1"
               >
                 <CalendarDays className="h-4 w-4" />
-                Agendar conversación
+                Hablemos de tu proyecto
                 <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
               </a>
               <a
                 href="mailto:soporte@gsitel-solutions.com"
-                className="group inline-flex min-w-[210px] items-center justify-center gap-3 rounded-xl border border-white/15 bg-white/[0.045] px-5 py-3.5 text-[10px] font-black uppercase tracking-[0.17em] text-white transition duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.08]"
+                className="group inline-flex min-w-0 w-full items-center justify-center gap-3 rounded-xl border border-white/15 bg-white/[0.045] px-4 py-3.5 text-center text-[11px] font-bold leading-5 tracking-wide text-white transition duration-300 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.08] md:flex-1"
               >
                 <Mail className="h-4 w-4 text-[#79e4f2]" />
                 Escribir por correo

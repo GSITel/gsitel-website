@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { twMerge } from "tailwind-merge";
 
@@ -29,14 +29,26 @@ export const AppModal = ({
   panelClassName,
   maxWidth = "3xl",
 }: AppModalProps) => {
+  const panel = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!isOpen) {
       return;
     }
 
+    const previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const getControls = () => Array.from(panel.current?.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex="0"]') ?? []).filter((element) => element.getClientRects().length > 0);
+    const frame = requestAnimationFrame(() => (getControls()[0] ?? panel.current)?.focus());
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
+      }
+      if (event.key === "Tab") {
+        const controls = getControls();
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (!first) { event.preventDefault(); panel.current?.focus(); return; }
+        if (event.shiftKey && (document.activeElement === first || !panel.current?.contains(document.activeElement))) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && (document.activeElement === last || !panel.current?.contains(document.activeElement))) { event.preventDefault(); first.focus(); }
       }
     };
 
@@ -47,6 +59,8 @@ export const AppModal = ({
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
+      cancelAnimationFrame(frame);
+      previousFocus?.focus();
     };
   }, [isOpen, onClose]);
 
@@ -64,6 +78,7 @@ export const AppModal = ({
           <motion.button
             type="button"
             aria-label="Cerrar modal"
+            tabIndex={-1}
             className="absolute inset-0 cursor-default bg-[#020408]/78 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -72,6 +87,8 @@ export const AppModal = ({
             onClick={onClose}
           />
           <motion.div
+            ref={panel}
+            tabIndex={-1}
             role="dialog"
             aria-modal="true"
             aria-label={ariaLabel}

@@ -1,0 +1,32 @@
+.headline {
+  margin: 0;
+  max-width: 590px;
+  font-size: clamp(2.25rem, 4vw, 3.8rem);
+  font-weight: 750;
+  line-height: 1.08;
+  letter-spacing: -.045em;
+  text-wrap: balance;
+  color: #0a2f5f;
+}
+.headline span { color: #1e63c6; }
+.intro {
+  max-width: 490px;
+  margin: 24px 0 0;
+  color: #486481;
+  font-size: 17px;
+  line-height: 1.8;
+  text-wrap: pretty;
+}
+.benefits { display: flex; flex-wrap: wrap; gap: 12px 20px; margin-top: 24px; }
+.benefit { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; color: #31547c; }
+.benefit svg { color: #217d80; flex-shrink: 0; }
+.actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; margin-top: 32px; }
+.primary { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 54px; border-radius: 12px; padding: 15px 22px; background: #1e63c6; color: white; font-size: 15px; font-weight: 650; box-shadow: 0 10px 25px #1e63c626; transition: background .2s, box-shadow .2s; }
+.primary:hover { background: #1955a8; box-shadow: 0 12px 28px #1e63c638; }
+.secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 8px 0; color: #31547c; font-size: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 5px; text-decoration-color: #a8bfdc; transition: color .2s; }
+.secondary:hover { color: #1e63c6; text-decoration-color: currentColor; }
+.primary:focus-visible, .secondary:focus-visible { outline: 3px solid #1e63c6; outline-offset: 5px; }
+.reassurance { display: flex; align-items: flex-start; gap: 8px; margin-top: 24px; max-width: 490px; color: #526b85; font-size: 12px; line-height: 1.6; }
+.reassurance svg { margin-top: 1px; flex-shrink: 0; color: #527996; }
+@media (min-width: 768px) and (max-width: 1023px) { .headline { font-size: 2.6rem; } .intro { font-size: 16px; margin-top: 20px; } .actions { gap: 8px 18px; } }
+@media (max-width: 639px) { .headline { max-width: 480px; font-size: clamp(2.15rem, 8.5vw, 3rem); } .intro { font-size: 16px; margin-top: 20px; line-height: 1.7; } .benefits { gap: 10px 16px; margin-top: 20px; } .actions { margin-top: 26px; gap: 8px; } .primary { width: 100%; } .secondary { width: 100%; } .reassurance { margin-top: 16px; } }

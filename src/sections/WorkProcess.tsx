@@ -15,7 +15,7 @@ import antennaIcon from "@/assets/tech-icon/antena-dark.png";
 import monitorIcon from "@/assets/tech-icon/monitor-dark.png";
 import routerIcon from "@/assets/tech-icon/router-dark.png";
 import satelliteIcon from "@/assets/tech-icon/satelite-dark.png";
-import { MotionInView } from "@/components/MotionInView";
+import { ScrollProcessStory } from "@/components/ScrollProcessStory";
 import { getModeTheme } from "@/lib/modeTheme";
 import type { SiteMode } from "@/lib/siteMode";
 import { motion } from "framer-motion";
@@ -38,28 +38,27 @@ import {
 } from "lucide-react";
 import Image, { type StaticImageData } from "next/image";
 import type { ReactNode } from "react";
-import { useHydratedReducedMotion } from "@/lib/useHydratedReducedMotion";
 
 const softwareSteps = [
   {
     number: "01",
     title: "Diagnóstico",
     description:
-      "Entendemos la operación antes de proponer tecnología. Separamos las señales importantes, las restricciones y las oportunidades que realmente justifican una decisión.",
+      "Analizamos tus sistemas y procesos para acordar prioridades y un alcance claro.",
     detail: ["Contexto", "Prioridades", "Oportunidades"],
   },
   {
     number: "02",
     title: "Diseño y ejecución",
     description:
-      "Convertimos el diagnóstico en una arquitectura clara, un plan de implementación y entregables que pueden revisarse y validarse durante todo el proceso.",
+      "Diseñamos y desarrollamos por etapas, con avances que puedes revisar y validar.",
     detail: ["Arquitectura", "Desarrollo", "Validación"],
   },
   {
     number: "03",
     title: "Operación continua",
     description:
-      "La puesta en marcha no es el final. Medimos el comportamiento del sistema, acompañamos la operación y priorizamos mejoras con evidencia.",
+      "Acompañamos la puesta en marcha y mejoramos el producto a partir de su uso.",
     detail: ["Indicadores", "Soporte", "Evolución"],
   },
 ] as const;
@@ -177,12 +176,12 @@ const DiagnosisVisual = ({
     aria-label="Paneles superpuestos de diagnóstico operativo, fuentes de evidencia y priorización"
   >
     <div className="absolute inset-[5%] rounded-[2.4rem] bg-[radial-gradient(circle_at_45%_42%,rgba(255,255,255,0.98),rgba(223,233,249,0.78)_62%,rgba(222,232,247,0)_76%)]" />
-    <div className="absolute left-[13%] top-[13%] h-[70%] w-[66%] rounded-[1.65rem] border border-white/80 bg-white/45 shadow-[0_28px_80px_rgba(43,77,124,0.08)] backdrop-blur-sm" />
+    <div className="absolute left-[13%] top-[13%] h-[70%] w-[66%] rounded-[1.65rem] border border-white/80 bg-white/45 shadow-[0_28px_80px_rgba(43,77,124,0.08)]" />
 
     <FloatingLayer
       reduceMotion={reduceMotion}
       delay={0.04}
-      className="absolute left-[7%] top-[6%] z-10 w-[70%] rounded-[1.35rem] border border-white bg-white/95 p-3 shadow-[0_24px_60px_rgba(35,66,111,0.14)] sm:p-5"
+      className="absolute left-[7%] top-[6%] z-10 w-[70%] rounded-[1.35rem] border border-white bg-white p-3 shadow-[0_24px_60px_rgba(35,66,111,0.14)] sm:p-5"
     >
       <div className="flex items-center justify-between border-b border-[#0b1d3a]/8 pb-2.5 sm:pb-3.5">
         <div>
@@ -307,7 +306,7 @@ const ExecutionVisual = ({
     <FloatingLayer
       reduceMotion={reduceMotion}
       delay={0.04}
-      className="absolute left-[6%] top-[6%] z-10 w-[75%] rounded-[1.4rem] border border-white bg-white/95 p-3 shadow-[0_26px_65px_rgba(35,66,111,0.14)] sm:p-5"
+      className="absolute left-[6%] top-[6%] z-10 w-[75%] rounded-[1.4rem] border border-white bg-white p-3 shadow-[0_26px_65px_rgba(35,66,111,0.14)] sm:p-5"
     >
       <div className="flex items-center justify-between">
         <div>
@@ -450,7 +449,7 @@ const OperationVisual = ({
     <FloatingLayer
       reduceMotion={reduceMotion}
       delay={0.04}
-      className="absolute left-[5%] top-[7%] z-10 w-[76%] rounded-[1.4rem] border border-white bg-white/95 p-3 shadow-[0_26px_65px_rgba(35,66,111,0.14)] sm:p-5"
+      className="absolute left-[5%] top-[7%] z-10 w-[76%] rounded-[1.4rem] border border-white bg-white p-3 shadow-[0_26px_65px_rgba(35,66,111,0.14)] sm:p-5"
     >
       <div className="flex items-center justify-between">
         <div>
@@ -607,12 +606,12 @@ const TelecomDiagnosisVisual = ({
     aria-label="Diagnóstico de red con drive test, mapa de cobertura y KPIs de radio"
   >
     <div className="absolute inset-[4%] rounded-[2.5rem] bg-[radial-gradient(circle_at_48%_44%,rgba(255,255,255,1),rgba(250,230,204,0.72)_62%,transparent_78%)]" />
-    <div className="absolute left-[12%] top-[12%] h-[72%] w-[68%] rounded-[1.7rem] border border-white/85 bg-white/40 shadow-[0_28px_75px_rgba(98,61,23,0.09)] backdrop-blur-sm" />
+    <div className="absolute left-[12%] top-[12%] h-[72%] w-[68%] rounded-[1.7rem] border border-white/85 bg-white/40 shadow-[0_28px_75px_rgba(98,61,23,0.09)]" />
 
     <FloatingLayer
       reduceMotion={reduceMotion}
       delay={0.04}
-      className="absolute left-[6%] top-[5%] z-10 w-[73%] rounded-[1.35rem] border border-white bg-white/95 p-3 shadow-[0_24px_60px_rgba(83,54,25,0.15)] sm:p-5"
+      className="absolute left-[6%] top-[5%] z-10 w-[73%] rounded-[1.35rem] border border-white bg-white p-3 shadow-[0_24px_60px_rgba(83,54,25,0.15)] sm:p-5"
     >
       <div className="flex items-center justify-between border-b border-[#3d2d1d]/8 pb-2.5 sm:pb-3.5">
         <div>
@@ -754,7 +753,7 @@ const TelecomExecutionVisual = ({
     <FloatingLayer
       reduceMotion={reduceMotion}
       delay={0.04}
-      className="absolute left-[6%] top-[6%] z-10 w-[75%] rounded-[1.4rem] border border-white bg-white/95 p-3 shadow-[0_26px_65px_rgba(83,54,25,0.15)] sm:p-5"
+      className="absolute left-[6%] top-[6%] z-10 w-[75%] rounded-[1.4rem] border border-white bg-white p-3 shadow-[0_26px_65px_rgba(83,54,25,0.15)] sm:p-5"
     >
       <div className="flex items-center justify-between">
         <div>
@@ -879,7 +878,7 @@ const TelecomOperationVisual = ({
     <FloatingLayer
       reduceMotion={reduceMotion}
       delay={0.04}
-      className="absolute left-[5%] top-[7%] z-10 w-[76%] rounded-[1.4rem] border border-white bg-white/95 p-3 shadow-[0_26px_65px_rgba(83,54,25,0.15)] sm:p-5"
+      className="absolute left-[5%] top-[7%] z-10 w-[76%] rounded-[1.4rem] border border-white bg-white p-3 shadow-[0_26px_65px_rgba(83,54,25,0.15)] sm:p-5"
     >
       <div className="flex items-center justify-between">
         <div>
@@ -1050,151 +1049,16 @@ const ProcessVisual = ({
 
 export const WorkProcess = ({ mode }: { mode: SiteMode }) => {
   const theme = getModeTheme(mode);
-  const reduceMotion = useHydratedReducedMotion();
   const steps = theme.isTelecom ? telecomSteps : softwareSteps;
 
   return (
-    <section
-      id="metodologia"
-      className="quiet-section relative isolate scroll-mt-24 overflow-hidden px-4 pb-24 pt-20 sm:px-6 sm:pb-32 sm:pt-28 md:scroll-mt-28 lg:pb-40"
-      aria-labelledby="work-process-title"
-    >
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(180deg,#EAEEFE_0%,#F7F9FF_13%,#F7F9FF_86%,#EAEEFE_100%)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-40 bg-[radial-gradient(ellipse_at_top,rgba(47,158,219,0.12),transparent_67%)]" />
-      <div className="pointer-events-none absolute -left-40 top-[34%] -z-10 h-96 w-96 rounded-full bg-[#2f9edb]/[0.055] blur-3xl" />
-      <div className="pointer-events-none absolute -right-48 bottom-[18%] -z-10 h-[28rem] w-[28rem] rounded-full bg-[#1b5aa6]/[0.045] blur-3xl" />
-
-      <div className="mx-auto max-w-7xl">
-        <MotionInView className="mx-auto max-w-3xl text-center">
-          <p className="section-eyebrow-light">Metodología</p>
-          <h2 id="work-process-title" className="section-title-light">
-            {theme.isTelecom
-              ? "Control antes, durante y después del despliegue."
-              : "Claridad antes, durante y después de construir."}
-          </h2>
-          <p className="section-desc-light mx-auto">
-            {theme.isTelecom
-              ? "Tres etapas para medir la red, ejecutar con trazabilidad y sostener su desempeño cuando entra en operación."
-              : "Tres etapas para reducir incertidumbre, tomar mejores decisiones y mantener cada solución útil cuando entra en operación."}
-          </p>
-        </MotionInView>
-
-        <div className="relative mt-16 space-y-24 sm:mt-24 sm:space-y-32 lg:mt-32 lg:space-y-44">
-          <div className="pointer-events-none absolute bottom-16 left-1/2 top-16 hidden w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-[#0b1d3a]/10 to-transparent lg:block" />
-
-          {steps.map((step, index) => {
-            const visualOnLeft = index % 2 === 0;
-
-            return (
-              <motion.article
-                key={step.title}
-                className="relative grid min-w-0 items-center gap-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(320px,0.72fr)] lg:gap-20 xl:gap-28"
-                initial={
-                  reduceMotion
-                    ? { opacity: 0 }
-                    : {
-                        opacity: 0,
-                        y: 48,
-                      }
-                }
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 0.82,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                <motion.div
-                  className={`min-w-0 ${
-                    visualOnLeft ? "lg:order-1" : "lg:order-2"
-                  }`}
-                  initial={
-                    reduceMotion
-                      ? { opacity: 0 }
-                      : { opacity: 0, x: visualOnLeft ? -34 : 34 }
-                  }
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{
-                    duration: 0.86,
-                    delay: 0.08,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                >
-                  <ProcessVisual
-                    phase={index}
-                    accent={theme.accent}
-                    reduceMotion={reduceMotion}
-                    isTelecom={theme.isTelecom}
-                  />
-                </motion.div>
-
-                <div
-                  className={`min-w-0 ${
-                    visualOnLeft ? "lg:order-2" : "lg:order-1"
-                  }`}
-                >
-                  <div className="flex items-center gap-4">
-                    <motion.span
-                      className="text-[11px] font-black tracking-[0.24em]"
-                      style={{ color: theme.accent }}
-                      initial={{ opacity: 0, scale: 0.7 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{
-                        type: "spring",
-                        stiffness: 320,
-                        damping: 24,
-                        delay: 0.18,
-                      }}
-                    >
-                      {step.number}
-                    </motion.span>
-                    <motion.span
-                      className="h-px bg-[#0b1d3a]/20"
-                      initial={{ width: 0 }}
-                      whileInView={{ width: 48 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.7, delay: 0.22 }}
-                      aria-hidden="true"
-                    />
-                    <span className="text-[9px] font-black uppercase tracking-[0.22em] text-[#0b1d3a]/42">
-                      Etapa
-                    </span>
-                  </div>
-
-                  <h3 className="mt-6 max-w-md text-3xl font-black leading-[1.08] tracking-[-0.025em] text-[#0b1d3a] sm:text-4xl lg:text-[2.65rem]">
-                    {step.title}
-                  </h3>
-                  <p className="mt-5 max-w-lg text-base leading-8 text-[#0b1d3a]/68 sm:text-[1.05rem]">
-                    {step.description}
-                  </p>
-
-                  <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-3 border-t border-[#0b1d3a]/10 pt-5">
-                    {step.detail.map((item, detailIndex) => (
-                      <motion.li
-                        key={item}
-                        className="flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.16em] text-[#0b1d3a]/50"
-                        initial={{ opacity: 0, y: 8 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.28 + detailIndex * 0.08 }}
-                      >
-                        <span
-                          className="h-1.5 w-1.5 rounded-full"
-                          style={{ backgroundColor: theme.accent }}
-                          aria-hidden="true"
-                        />
-                        {item}
-                      </motion.li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+    <ScrollProcessStory
+      steps={steps}
+      accent={theme.accent}
+      title={theme.isTelecom ? "De la red al rendimiento" : "De entender tu operación a hacerla evolucionar"}
+      renderVisual={(phase, reduceMotion) => (
+        <ProcessVisual phase={phase} accent={theme.accent} reduceMotion={reduceMotion} isTelecom={theme.isTelecom} />
+      )}
+    />
   );
 };

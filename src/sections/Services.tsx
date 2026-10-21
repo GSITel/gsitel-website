@@ -1,6 +1,7 @@
 "use client";
 
 import { AppModal } from "@/components/AppModal";
+import { ClaudeServiceScene } from "@/components/ClaudeServiceScene";
 import { MotionInView, staggerContainer, staggerItem } from "@/components/MotionInView";
 import { getModeTheme } from "@/lib/modeTheme";
 import type { SiteMode } from "@/lib/siteMode";
@@ -8,13 +9,15 @@ import { motion } from "framer-motion";
 import {
   ArrowUpRight,
   Check,
+  ClipboardList,
+  Code2,
   RadioTower,
-  ScanSearch,
   Workflow,
   X,
   type LucideIcon,
 } from "lucide-react";
 import { useState } from "react";
+import scope from "./ServiceScope.module.css";
 
 type ServiceItem = {
   id: string;
@@ -32,10 +35,10 @@ const services: ServiceItem[] = [
   {
     id: "automation",
     label: "Automatización & Software",
-    icon: Workflow,
-    title: "Software que ordena la operación",
+    icon: Code2,
+    title: "Desarrollo de software",
     description:
-      "Diseñamos aplicaciones, automatizaciones e integraciones alrededor de cómo funciona realmente tu negocio.",
+      "Creamos productos a medida y conectamos los sistemas que tu equipo utiliza cada día.",
     promise: "Menos tareas manuales. Más control para decidir.",
     activities: [
       "Automatización de ventas, compras y cobranzas",
@@ -66,10 +69,10 @@ const services: ServiceItem[] = [
   {
     id: "consultoria",
     label: "Consultoría de Software",
-    icon: ScanSearch,
-    title: "Claridad antes de invertir en tecnología",
+    icon: ClipboardList,
+    title: "Consultoría y reingeniería",
     description:
-      "Traducimos necesidades dispersas en prioridades, arquitectura y un plan de ejecución que el equipo puede entender.",
+      "Analizamos tu software y tus procesos para definir qué mejorar y cómo llevarlo a cabo.",
     promise: "La solución correcta, en el orden correcto.",
     activities: [
       "Diagnóstico de procesos y oportunidades",
@@ -102,10 +105,10 @@ export const Services = ({ mode }: { mode: SiteMode }) => {
         <div className="grid gap-8 border-b border-[#0b1d3a]/10 pb-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
           <MotionInView>
             <p className="section-eyebrow-light">Servicios</p>
-            <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-[1.08] tracking-[-0.04em] text-[#06111f] sm:text-4xl lg:text-5xl">
+            <h2 className="section-title-light max-w-2xl">
               {theme.isTelecom
                 ? "Capacidad técnica para sostener tu red"
-                : "Tecnología que resuelve lo importante"}
+                : "Software pensado para tu operación"}
             </h2>
           </MotionInView>
 
@@ -113,9 +116,9 @@ export const Services = ({ mode }: { mode: SiteMode }) => {
             <p className="max-w-xl text-sm leading-7 text-[#0b1d3a]/65 sm:text-base">
               {theme.isTelecom
                 ? "Ingeniería, integración y soporte con una ejecución visible de principio a fin."
-                : "Partimos del problema operativo y construimos únicamente lo que genera control, velocidad o crecimiento."}
+                : "Desde entender lo que ya existe hasta construir lo que tu negocio necesita."}
             </p>
-            <div className="mt-5 flex flex-wrap gap-2">
+            {theme.isTelecom && <div className="mt-5 flex flex-wrap gap-2">
               {focusTags.map((item) => (
                 <span
                   key={item}
@@ -124,7 +127,7 @@ export const Services = ({ mode }: { mode: SiteMode }) => {
                   {item}
                 </span>
               ))}
-            </div>
+            </div>}
           </MotionInView>
         </div>
 
@@ -144,7 +147,7 @@ export const Services = ({ mode }: { mode: SiteMode }) => {
                 variants={staggerItem}
                 whileHover={{ y: -4 }}
                 transition={{ type: "spring", stiffness: 300, damping: 26 }}
-                className="quiet-card group relative flex min-h-[430px] flex-col overflow-hidden rounded-[1.6rem] p-6 sm:p-8"
+                className={`quiet-card group relative flex flex-col overflow-hidden rounded-[1.6rem] p-6 sm:p-8 ${theme.isTelecom ? "min-h-[430px]" : "min-h-[330px]"}`}
               >
                 <div
                   className="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full opacity-0 blur-3xl transition-opacity duration-700 group-hover:opacity-100"
@@ -163,7 +166,7 @@ export const Services = ({ mode }: { mode: SiteMode }) => {
                 </div>
 
                 <div className="relative mt-9">
-                  <h3 className="max-w-lg text-2xl font-semibold leading-[1.12] tracking-[-0.035em] text-[#0b1d3a] sm:text-[2rem]">
+                  <h3 className="section-card-title max-w-lg">
                     {service.title}
                   </h3>
                   <p className="mt-4 max-w-lg text-sm leading-7 text-[#0b1d3a]/62">
@@ -174,22 +177,25 @@ export const Services = ({ mode }: { mode: SiteMode }) => {
                   </p>
                 </div>
 
-                <ul className="relative mt-7 grid gap-3 border-t border-[#0b1d3a]/8 pt-6 sm:grid-cols-2">
+                {!theme.isTelecom && <ClaudeServiceScene role={service.id === "automation" ? "developer" : "consultant"} />}
+
+                {theme.isTelecom && <ul className="relative mt-7 grid gap-3 border-t border-[#0b1d3a]/8 pt-6 sm:grid-cols-2">
                   {service.activities.slice(0, 4).map((activity) => (
                     <li key={activity} className="flex items-start gap-2.5 text-xs leading-5 text-[#0b1d3a]/62">
                       <Check className="mt-0.5 h-3.5 w-3.5 shrink-0" style={{ color: service.accent }} strokeWidth={2.3} />
                       {activity}
                     </li>
                   ))}
-                </ul>
+                </ul>}
 
                 <button
                   type="button"
                   onClick={() => setActiveService(service)}
-                  className="group/action relative mt-auto inline-flex items-center gap-2 self-start pt-8 text-[10px] font-black uppercase tracking-[0.18em] text-[#0b1d3a]"
+                  className={scope.trigger}
+                  aria-label={`Ver alcance de ${service.title}`}
                 >
-                  Ver alcance
-                  <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/action:-translate-y-0.5 group-hover/action:translate-x-0.5" />
+                  <span><strong>Ver alcance</strong><small>Qué podemos abordar</small></span>
+                  <ArrowUpRight size={18} aria-hidden="true" />
                 </button>
               </motion.article>
             );
@@ -202,57 +208,29 @@ export const Services = ({ mode }: { mode: SiteMode }) => {
         onClose={() => setActiveService(null)}
         ariaLabel={activeService ? `Detalles de ${activeService.label}` : "Detalles"}
         maxWidth="2xl"
-        panelClassName="relative overflow-hidden rounded-[2rem] border border-white/15 bg-[linear-gradient(145deg,#061426_0%,#0a2245_58%,#07172e_100%)] p-6 shadow-[0_34px_90px_rgba(1,8,22,0.5)] sm:p-10"
+        panelClassName={scope.panel}
       >
         {activeService && (
           <>
-            <div
-              className="pointer-events-none absolute -right-12 -top-12 h-40 w-40 rounded-full blur-3xl"
-              style={{ background: `rgba(${activeService.accentRgb}, 0.2)` }}
-            />
-            <div className="relative flex items-start justify-between gap-5">
-              <div>
-                <span className="text-[10px] font-black uppercase tracking-[0.25em]" style={{ color: activeService.accent }}>
-                  Alcance del servicio
-                </span>
-                <h3 className="mt-3 text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-                  {activeService.title}
-                </h3>
-                <p className="mt-3 max-w-xl text-sm leading-6 text-white/55">{activeService.description}</p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setActiveService(null)}
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-white transition hover:bg-white/12"
-                aria-label="Cerrar"
-              >
-                <X className="h-4 w-4" />
-              </button>
+            <header className={scope.header}>
+              <span className={scope.eyebrow}><Workflow size={15} aria-hidden="true" /> Servicios GSITEL / Alcance</span>
+              <button type="button" onClick={() => setActiveService(null)} className={scope.close} aria-label="Cerrar alcance"><X size={18} aria-hidden="true" /></button>
+              <h2>{activeService.title}</h2>
+              <p>{activeService.description}</p>
+            </header>
+            <div className={scope.body}>
+              <h3>Qué podemos abordar</h3>
+              <ol className={scope.activities}>
+                {activeService.activities.map((activity, index) => (
+                  <li key={activity}><span>0{index + 1}</span><p>{activity}</p></li>
+                ))}
+              </ol>
+              <div className={scope.note}><Check size={17} aria-hidden="true" /><p>El alcance se acuerda según tu operación, tus prioridades y los sistemas existentes.</p></div>
             </div>
-
-            <ul className="relative mt-8 grid gap-3 sm:grid-cols-2">
-              {activeService.activities.map((activity) => (
-                <li key={activity} className="flex items-start gap-3 rounded-xl border border-white/[0.07] bg-white/[0.035] p-4 text-sm leading-6 text-white/75">
-                  <Check className="mt-1 h-4 w-4 shrink-0" style={{ color: activeService.accent }} />
-                  {activity}
-                </li>
-              ))}
-            </ul>
-
-            <div className="relative mt-9 flex flex-col gap-3 sm:flex-row">
-              <button type="button" onClick={() => setActiveService(null)} className="btn-ghost-light flex-1 sm:flex-none">
-                Cerrar
-              </button>
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdfgHkDApUgxqeuqpwoaJPVWo6nQjS7NI9wtpB_W7f0RCddpQ/viewform?usp=publish-editor"
-                target="_blank"
-                rel="noreferrer"
-                className="btn-accent flex-1 sm:flex-none"
-                style={{ backgroundColor: activeService.accent }}
-              >
-                Hablemos de tu proyecto
-              </a>
-            </div>
+            <footer className={scope.footer}>
+              <p>El siguiente paso: conocer el contexto de tu proyecto.</p>
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfgHkDApUgxqeuqpwoaJPVWo6nQjS7NI9wtpB_W7f0RCddpQ/viewform?usp=publish-editor" target="_blank" rel="noreferrer" className={scope.cta}>Hablemos de tu proyecto <ArrowUpRight size={16} aria-hidden="true" /></a>
+            </footer>
           </>
         )}
       </AppModal>

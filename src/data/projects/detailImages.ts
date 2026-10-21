@@ -1,5 +1,7 @@
-import factVentas from "@/assets/projects/n8n/fact-ventas-automatization.jpeg";
-import factReport from "@/assets/projects/n8n/factreportresponsegmail.jpeg";
+import factVentas from "@/assets/projects/v&a/fact-ventas-automatization.jpeg";
+import factReport from "@/assets/projects/v&a/factreportresponsegmail.jpeg";
+import vaHero from "@/assets/projects/v&a/v&a_hero.png";
+import vaAbout from "@/assets/projects/v&a/v&a_aboutus.png";
 import ascensoresLogin from "@/assets/projects/ascensores/loggin.png";
 import ascensoresHome from "@/assets/projects/ascensores/home.jpeg";
 import ascensoresChart from "@/assets/projects/ascensores/chart.jpeg";
@@ -35,6 +37,8 @@ import type { ProjectDetailImage } from "@/data/projects/types";
 
 const DETAIL_IMAGES: Record<string, ProjectDetailImage[]> = {
   sunat: [
+    { src: vaHero, alt: "V&A Profesionales: página de inicio", format: "screen" },
+    { src: vaAbout, alt: "V&A Profesionales: sección Nosotros", format: "screen" },
     { src: factVentas, alt: "Automatización de ventas SUNAT" },
     { src: factReport, alt: "Reporte automatizado por correo" },
   ],

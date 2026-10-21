@@ -14,12 +14,10 @@ type HeaderProps = {
 };
 
 const navLinks = [
-  { href: "/aboutus", label: "Nosotros" },
   { href: "/#servicios", label: "Servicios" },
-  { href: "/#alianzas-software", label: "Empresas" },
-  { href: "/#metodologia", label: "Cómo trabajamos" },
-  { href: "/#clientes", label: "Clientes" },
   { href: "/#proyectos", label: "Proyectos" },
+  { href: "/#metodologia", label: "Cómo trabajamos" },
+  { href: "/aboutus", label: "Nosotros" },
   { href: "/#contacto", label: "Contacto" },
 ];
 
@@ -73,10 +71,7 @@ export const Header = ({ mode, onModeChange }: HeaderProps) => {
   const [localMode, setLocalMode] = useState<SiteMode>("software");
   const activeMode = mode ?? localMode;
   const handleModeChange = onModeChange ?? setLocalMode;
-  const isTelecom = activeMode === "telecom";
-  const visibleNavLinks = isTelecom
-    ? navLinks.filter((link) => link.href !== "/#alianzas-software")
-    : navLinks;
+  const visibleNavLinks = navLinks;
 
   const handleSectionNavigation = (
     event: MouseEvent<HTMLAnchorElement>,
@@ -219,17 +214,6 @@ export const Header = ({ mode, onModeChange }: HeaderProps) => {
         </div>
       </div>
 
-      {isAtTop && (
-        <div
-          className="hidden border-b border-slate-500/20 bg-[#8f99aa] text-center text-white backdrop-blur-sm md:block"
-        >
-          <p className="container py-2 text-xs font-semibold tracking-wide">
-            {isTelecom
-              ? "Ingeniería RAN, integración multivendor y soporte para redes críticas"
-              : "Desarrollo de software integral para operaciones críticas"}
-          </p>
-        </div>
-      )}
     </header>
   );
 };

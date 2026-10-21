@@ -1,4 +1,5 @@
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants.js";
+import { fileURLToPath } from "node:url";
 
 /** @type {import('next').NextConfig} */
 const baseConfig = {
@@ -22,7 +23,13 @@ const baseConfig = {
     ],
   },
 
-  webpack(config) {
+  webpack(config, { dev }) {
+    if (dev) {
+      config.module.rules.push({
+        test: /mini-css-extract-plugin[\\/]hmr[\\/]hotModuleReplacement\.js$/,
+        use: [fileURLToPath(new URL("./scripts/webpack/css-hmr-guard.cjs", import.meta.url))],
+      });
+    }
     // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule) =>
       rule.test?.test?.(".svg"),
@@ -56,6 +63,8 @@ export default (phase) => {
 
   return {
     ...baseConfig,
+    // Keep HMR styles and chunks separate from production builds.
+    distDir: isDev ? ".next-dev" : ".next",
     // ✅ para export estático (solo en build, no en dev)
     ...(isDev ? {} : { output: "export" }),
   };

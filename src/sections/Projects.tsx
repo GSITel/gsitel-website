@@ -4,6 +4,8 @@ import telecomIntegrations from "@/assets/illustrations/hero-telecom-integration
 import telecomKpis from "@/assets/illustrations/hero-telecom-kpis.png";
 import telecomMonitoring from "@/assets/illustrations/hero-telecom-monitoring.png";
 import { AppModal } from "@/components/AppModal";
+import { ProjectImageCarousel } from "@/components/ProjectImageCarousel";
+import galleryStyles from "@/components/ProjectImageCarousel.module.css";
 import { DotGrid } from "@/components/DotGrid";
 import { MotionInView } from "@/components/MotionInView";
 import { getProjectDetailImages } from "@/data/projects/detailImages";
@@ -163,6 +165,9 @@ const ProjectGallery = ({
   phoneGallery?: boolean;
   onImageOpen: (image: ProjectDetailImage) => void;
 }) => (
+  <>
+  <ProjectImageCarousel key={projectTitle} images={images} title={projectTitle} phoneGallery={phoneGallery} onImageOpen={onImageOpen} />
+  <div className={galleryStyles.desktop}>
   <div
     className={
       phoneGallery
@@ -218,6 +223,8 @@ const ProjectGallery = ({
       );
     })}
   </div>
+  </div>
+  </>
 );
 
 const ProjectCaseStudy = ({
@@ -268,12 +275,12 @@ const ProjectCaseStudy = ({
         style={{ background: `linear-gradient(90deg, transparent, ${project.accent}, transparent)` }}
       />
       {isFeatured && (
-        <div className="absolute right-0 top-0 hidden rounded-bl-[1.5rem] bg-[#0b1d3a] px-5 py-2.5 text-[9px] font-black uppercase tracking-[0.2em] text-white sm:block">
+        <div className="absolute right-0 top-0 hidden rounded-bl-[1.5rem] bg-[#0b1d3a] px-5 py-2.5 text-[9px] font-black uppercase tracking-[0.2em] text-white md:block">
           Selección GSITEL
         </div>
       )}
 
-      <header className="flex flex-col gap-5 border-b border-[#0b1d3a]/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
+      <header className="flex flex-col gap-5 border-b border-[#0b1d3a]/10 pb-6 md:flex-row md:items-center md:justify-between">
         <div className="flex min-w-0 items-center gap-4">
           <div
             className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-[#0b1d3a]/8 sm:h-[4.5rem] sm:w-[4.5rem]"
@@ -296,7 +303,7 @@ const ProjectCaseStudy = ({
         </div>
 
         {project.techTags && project.techTags.length > 0 && (
-          <div className="flex flex-wrap gap-2 sm:max-w-[48%] sm:justify-end">
+          <div className="flex flex-wrap gap-2 md:max-w-[48%] md:justify-end">
             {project.techTags.map((tech, techIndex) => (
               <motion.span
                 key={tech}
@@ -342,10 +349,10 @@ const ProjectCaseStudy = ({
           />
           <div className="relative">
             <p className="text-[9px] font-black uppercase tracking-[0.26em] text-[#1b5aa6]">
-              Detalle técnico
+              El proyecto
             </p>
             <p className="mt-4 whitespace-pre-line text-sm font-medium leading-7 text-[#0b1d3a]/76">
-              {project.detail ?? project.description}
+              {project.description}
             </p>
             {project.projectUrl && (
               <a
@@ -483,12 +490,12 @@ export const Projects = ({ mode }: { mode: SiteMode }) => {
           <div className="min-w-0">
             <p className="section-eyebrow-light">Proyectos</p>
             <h2 className="section-title-light">
-              {isTelecom ? "Experiencia telecom" : "Casos de software"}
+              {isTelecom ? "Experiencia telecom" : "Productos que ya están en marcha"}
             </h2>
             <p className="section-desc-light">
               {isTelecom
                 ? "RAN, rollout y soporte explicados desde su alcance técnico."
-                : "Productos digitales explicados desde su arquitectura e impacto."}
+                : "Una selección de aplicaciones y plataformas que hemos desarrollado."}
             </p>
           </div>
           <span className="w-fit rounded-full border border-[#0b1d3a]/10 bg-white/80 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.18em] text-[#0b1d3a]/65 backdrop-blur">

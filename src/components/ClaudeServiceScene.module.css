@@ -1,0 +1,47 @@
+.scene { --scene-ink: #244362; --scene-muted: #60748c; position: relative; margin-top: 26px; overflow: hidden; border: 1px solid #dfe8f3; border-radius: 16px; background: linear-gradient(140deg, #fafcff, #edf3fb); color: var(--scene-ink); }
+.topbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 11px 14px; border-bottom: 1px solid #e1e9f4; color: var(--scene-muted); font-size: 10px; }
+.dots { display: flex; gap: 4px; }
+.dots i { width: 5px; height: 5px; border-radius: 50%; background: #c4d3e5; }
+.indicator { width: 5px; height: 5px; border-radius: 50%; background: #72a999; }
+.body { padding: 17px; }
+.profile { position: relative; display: flex; align-items: center; justify-content: center; min-height: 115px; }
+.identity { position: relative; z-index: 1; }
+.identity .roleBadge { display: flex; align-items: center; gap: 5px; margin-bottom: 9px; font-size: 10px; color: #6f7e90; }
+.profile .character { width: 142px; height: 123px; }
+.creature { animation: claude-bob 3.8s ease-in-out infinite; transform-origin: center; }
+.avatar { display: grid; place-items: center; width: 46px; height: 46px; border: 1px solid #ebd8cb; border-radius: 14px; background: #f7e9de; color: #9b6246; }
+.profile strong { display: block; font-size: 20px; font-weight: 650; letter-spacing: -.025em; }
+.profile div > span { display: block; margin-top: 2px; font-size: 11px; color: var(--scene-muted); }
+.roleIcon { margin-left: auto; color: #8ca2bc; }
+.editor, .workspace { margin-top: 16px; border: 1px solid #e1e9f4; border-radius: 11px; background: #ffffffdf; overflow: hidden; min-height: 171px; }
+.filename { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #f7f9fd; border-bottom: 1px solid #e7edf5; color: #60748c; font-size: 10px; }
+.code { padding: 10px 12px; }
+.line { display: flex; gap: 14px; min-height: 21px; align-items: center; animation: scene-code 8s ease-in-out infinite; }
+.line:nth-child(2) { animation-delay: .5s; }
+.line:nth-child(3) { animation-delay: 1s; }
+.line:nth-child(4) { animation-delay: 1.5s; }
+.line > span { font: 10px/1.6 monospace; color: #99aabd; }
+.line code { color: #426184; font: 11px/1.6 monospace; }
+.line b { color: #326ac2; font-weight: 500; }
+.line em { color: #357768; font-style: normal; }
+.cursor { display: inline-block; width: 1px; height: 11px; background: #326ac2; vertical-align: -1px; margin-left: 4px; }
+.editorFooter { display: flex; align-items: center; gap: 6px; padding: 7px 12px; border-top: 1px solid #eef2f8; color: #497b6d; font-size: 10px; }
+.flow { display: flex; gap: 7px; padding: 16px 12px 12px; }
+.flowItem { display: flex; flex: 1; min-width: 0; align-items: center; gap: 7px; }
+.flowItem:last-child { flex: .85; }
+.flowItem > svg { color: #a1b6d0; flex-shrink: 0; }
+.node { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex: 1; min-width: 0; height: 57px; border: 1px solid #dae6f6; border-radius: 8px; background: #f5f8fe; animation: scene-node 9s ease-in-out infinite; }
+.flowItem:nth-child(2) .node { animation-delay: 3s; }
+.flowItem:nth-child(3) .node { animation-delay: 6s; }
+.node > span { font-size: 9px; color: #6d8bb2; }
+.node strong { font-size: 10px; font-weight: 600; }
+.insight { display: flex; align-items: center; gap: 8px; margin: 0 12px 12px; padding: 9px; border-radius: 8px; background: #eff6f7; }
+.insightIcon { display: grid; place-items: center; color: #527d82; }
+.insight strong { display: block; font-size: 10px; font-weight: 600; color: #3d636c; }
+.insight div > span { display: block; margin-top: 3px; font-size: 9px; color: #5a7682; }
+.scene[data-playing="false"] * { animation-play-state: paused; }
+@keyframes scene-code { 0%, 8% { opacity: .3; transform: translateX(3px); } 20%, 88% { opacity: 1; transform: translateX(0); } 100% { opacity: .3; transform: translateX(3px); } }
+@keyframes scene-node { 0%, 30% { border-color: #83acd8; background: #e6f0fe; } 40%, 100% { border-color: #dae6f6; background: #f5f8fe; } }
+@keyframes claude-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+@media (prefers-reduced-motion: reduce) { .line, .node, .creature { animation: none; } }
+@media (max-width: 380px) { .body { padding: 12px; } .flow { gap: 4px; padding-inline: 8px; } .flowItem { gap: 4px; } .line { gap: 8px; } .line code { font-size: 10px; } }
