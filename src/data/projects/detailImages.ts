@@ -34,8 +34,34 @@ import xtremeAppPanel from "@/assets/projects/xtreme/app-panel.png";
 import xtremeAppHorarios from "@/assets/projects/xtreme/app-horarios.png";
 import xtremeAppCatalogo from "@/assets/projects/xtreme/app-catalogo.png";
 import type { ProjectDetailImage } from "@/data/projects/types";
+import ranAntennas from "@/assets/projects/telecom/ran-antennas.webp";
+import radioMast from "@/assets/projects/telecom/radio-mast.webp";
+import ruralSite from "@/assets/projects/telecom/rural-site.webp";
+import towerMaintenance from "@/assets/projects/telecom/tower-maintenance.webp";
+import radioEquipment from "@/assets/projects/telecom/radio-equipment.webp";
 
 const DETAIL_IMAGES: Record<string, ProjectDetailImage[]> = {
+  // Stock reference photography; source URLs and license in telecom/SOURCES.md.
+  telecomRan: [
+    { src: radioMast, alt: "Imagen de referencia: torre con antenas sectoriales y enlaces de microondas" },
+    { src: towerMaintenance, alt: "Imagen de referencia: técnicos trabajando en antenas de una estación móvil" },
+  ],
+  telecomRefarming: [
+    { src: ranAntennas, alt: "Imagen de referencia: antenas y unidades de radio de una estación base" },
+    { src: towerMaintenance, alt: "Imagen de referencia: intervención técnica en equipos de radio" },
+  ],
+  telecomEvents: [
+    { src: towerMaintenance, alt: "Imagen de referencia: instalación y mantenimiento de antenas móviles" },
+    { src: radioEquipment, alt: "Imagen de referencia: equipos de transmisión y antenas en una torre" },
+  ],
+  telecomRural: [
+    { src: ruralSite, alt: "Imagen de referencia: estación de telecomunicaciones en una colina rural" },
+    { src: radioMast, alt: "Imagen de referencia: infraestructura de radio para cobertura móvil" },
+  ],
+  telecomRollout: [
+    { src: radioEquipment, alt: "Imagen de referencia: torre con antenas sectoriales y platos de transmisión" },
+    { src: towerMaintenance, alt: "Imagen de referencia: trabajos de instalación en una estación base móvil" },
+  ],
   sunat: [
     { src: vaHero, alt: "V&A Profesionales: página de inicio", format: "screen" },
     { src: vaAbout, alt: "V&A Profesionales: sección Nosotros", format: "screen" },

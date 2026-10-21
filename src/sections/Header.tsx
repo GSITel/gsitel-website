@@ -9,6 +9,7 @@ import type { SiteMode } from "@/lib/siteMode";
 import { scrollToSection } from "@/lib/smoothSectionScroll";
 
 type HeaderProps = {
+  showModeToggle?: boolean;
   mode?: SiteMode;
   onModeChange?: (mode: SiteMode) => void;
 };
@@ -64,7 +65,7 @@ const ModeToggle = ({
   );
 };
 
-export const Header = ({ mode, onModeChange }: HeaderProps) => {
+export const Header = ({ mode, onModeChange, showModeToggle = true }: HeaderProps) => {
   const [isAtTop, setIsAtTop] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
@@ -134,7 +135,7 @@ export const Header = ({ mode, onModeChange }: HeaderProps) => {
 
             <button
               type="button"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 bg-white/[0.07] text-white transition hover:border-white/30 hover:bg-white/10 min-[1201px]:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-white/20 bg-[#0a2f5f] text-white transition hover:bg-[#1b5aa6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1b5aa6] min-[1201px]:hidden"
               onClick={() => setIsMenuOpen((prev) => !prev)}
               aria-label="Abrir menú"
               aria-expanded={isMenuOpen}
@@ -172,9 +173,9 @@ export const Header = ({ mode, onModeChange }: HeaderProps) => {
                   </Link>
                 ),
               )}
-              <div className="ml-1 border-l border-white/10 pl-2">
+              {showModeToggle && <div className="ml-1 border-l border-white/10 pl-2">
                 <ModeToggle mode={activeMode} onModeChange={handleModeChange} />
-              </div>
+              </div>}
             </nav>
           </div>
 
@@ -184,9 +185,9 @@ export const Header = ({ mode, onModeChange }: HeaderProps) => {
             } overflow-hidden`}
           >
             <nav className="mt-3 flex flex-col gap-1 rounded-2xl border border-white/12 bg-[rgba(8,20,42,0.97)] p-3 text-white/90 shadow-[0_24px_60px_rgba(0,0,0,0.26)] backdrop-blur-2xl">
-              <div className="mb-2 flex justify-center">
+              {showModeToggle && <div className="mb-2 flex justify-center">
                 <ModeToggle mode={activeMode} onModeChange={handleModeChange} />
-              </div>
+              </div>}
               {visibleNavLinks.map((link) =>
                 link.href.startsWith("/#") ? (
                   <a

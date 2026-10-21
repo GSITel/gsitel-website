@@ -1,59 +1,20 @@
-import { MotionInView } from "@/components/MotionInView";
+import { Check } from "lucide-react";
 
-const purposeItems = [
-  {
-    number: "01",
-    label: "Misión",
-    title: "Mejorar operaciones mediante ingeniería y tecnología.",
-    description:
-      "Diseñamos soluciones que conectan personas, procesos e infraestructura con mayor control y eficiencia.",
-  },
-  {
-    number: "02",
-    label: "Visión",
-    title: "Ser un socio tecnológico de referencia en Latinoamérica.",
-    description:
-      "Queremos impulsar organizaciones más conectadas, automatizadas y preparadas para crecer.",
-  },
+const principles = [
+  { title: "Primero, tu operación", text: "Escuchamos, revisamos tus sistemas y definimos qué necesitas resolver." },
+  { title: "Avances que puedes ver", text: "Acordamos el alcance y validamos cada entrega contigo." },
+  { title: "Seguimos a tu lado", text: "Acompañamos la puesta en marcha y la evolución de tu solución." },
 ];
 
-export const AboutPurpose = () => {
-  return (
-    <section id="proposito" className="bg-[#eaeefe] px-4 py-20 text-[#06111f] sm:px-6 sm:py-24">
-      <div className="mx-auto max-w-7xl">
-        <MotionInView className="max-w-2xl">
-          <p className="section-eyebrow-light">Nuestro propósito</p>
-          <h2 className="section-title-light">Lo que guía nuestro trabajo.</h2>
-        </MotionInView>
-
-        <div className="mt-12 grid border-y border-[#06111f]/15 md:grid-cols-2">
-          {purposeItems.map((item, index) => (
-            <MotionInView
-              key={item.label}
-              delay={index * 0.08}
-              x={index === 0 ? -28 : 28}
-              y={0}
-              className="py-9 md:px-10 md:py-12 md:first:pl-0 md:last:border-l md:last:border-[#06111f]/15 md:last:pr-0"
-            >
-              <div className="flex items-center gap-4">
-                <span className="text-[10px] font-black tracking-[0.22em] text-[#1b5aa6]">
-                  {item.number}
-                </span>
-                <span className="h-px w-8 bg-[#1b5aa6]/30" aria-hidden="true" />
-                <span className="text-[10px] font-black uppercase tracking-[0.22em] text-[#0b1d3a]/50">
-                  {item.label}
-                </span>
-              </div>
-              <h3 className="mt-6 max-w-lg text-2xl font-black leading-tight text-[#06111f] sm:text-3xl">
-                {item.title}
-              </h3>
-              <p className="mt-4 max-w-lg text-sm leading-7 text-[#0b1d3a]/65 sm:text-base">
-                {item.description}
-              </p>
-            </MotionInView>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-};
+export const AboutPurpose = () => (
+  <section id="proposito" aria-label="Cómo trabajamos contigo" className="quiet-section quiet-surface px-4 py-10 sm:px-6 sm:py-12">
+    <div className="relative mx-auto grid max-w-7xl gap-7 border-y border-[#0b1d3a]/10 py-8 md:grid-cols-3 md:gap-10">
+      {principles.map(({ title, text }) => (
+        <article key={title} className="flex items-start gap-3">
+          <Check size={18} className="mt-1 shrink-0 text-[#217d80]" aria-hidden="true" />
+          <div><h2 className="text-base font-semibold tracking-tight text-[#0b1d3a]">{title}</h2><p className="mt-2 max-w-sm text-sm leading-7 text-[#486481]">{text}</p></div>
+        </article>
+      ))}
+    </div>
+  </section>
+);

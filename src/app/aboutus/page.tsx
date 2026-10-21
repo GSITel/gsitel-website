@@ -28,7 +28,7 @@ export const metadata: Metadata = {
 export default function AboutUsPage() {
   return (
     <>
-      <Header />
+      <Header showModeToggle={false} />
       <AboutUsExperience />
       <CtaFooterShell>
         <AboutContact />

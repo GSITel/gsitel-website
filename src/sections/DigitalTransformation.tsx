@@ -523,9 +523,7 @@ export const DigitalTransformation = ({ mode }: { mode: SiteMode }) => {
                 Cerrar
               </button>
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdfgHkDApUgxqeuqpwoaJPVWo6nQjS7NI9wtpB_W7f0RCddpQ/viewform?usp=publish-editor"
-                target="_blank"
-                rel="noreferrer"
+                href="#contacto"
                 className={`btn-accent flex-1 sm:flex-none ${theme.ctaPrimary}`}
               >
                 Agendar reunión

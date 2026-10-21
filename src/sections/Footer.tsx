@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/logos/gsitel_services.png";
 import SocialLinkedIn from "@/assets/icons/social-linkedin.svg";
+import type { SiteMode } from "@/lib/siteMode";
 
 const footerLinks = [
   { href: "/aboutus", label: "Nosotros" },
@@ -11,7 +12,11 @@ const footerLinks = [
   { href: "/#contacto", label: "Contacto" },
 ];
 
-export const Footer = () => {
+export const Footer = ({ mode }: { mode?: SiteMode }) => {
+  const isTelecom = mode === "telecom";
+  const serviceLabels = isTelecom
+    ? ["Despliegue e integración RAN", "Transmisión y backhaul", "Drive Test y optimización RF", "Soporte OyM y NOC"]
+    : ["Desarrollo de software", "Automatización e IA", "Ingeniería RAN", "Consultoría TI"];
   return (
     <footer className="relative bg-transparent px-4 pb-10 pt-0 text-sm text-white/70 sm:px-6 sm:pb-12">
       <div className="mx-auto max-w-7xl">
@@ -27,8 +32,9 @@ export const Footer = () => {
               />
             </Link>
             <p className="mt-4 text-sm leading-6 text-white/60">
-              Software integral y ingeniería telecom para operaciones críticas en
-              Latinoamérica.
+              {isTelecom
+                ? "Ingeniería, integración y soporte de telecomunicaciones para operaciones críticas en Latinoamérica."
+                : "Software integral y ingeniería telecom para operaciones críticas en Latinoamérica."}
             </p>
             <a
               href="mailto:soporte@gsitel-solutions.com"
@@ -61,10 +67,7 @@ export const Footer = () => {
                 Servicios
               </p>
               <ul className="mt-4 flex flex-col gap-2.5 text-white/75">
-                <li>Desarrollo de software</li>
-                <li>Automatización e IA</li>
-                <li>Ingeniería RAN</li>
-                <li>Consultoría TI</li>
+                {serviceLabels.map((label) => <li key={label}>{label}</li>)}
               </ul>
             </div>
 
@@ -92,7 +95,7 @@ export const Footer = () => {
             © 2026 GSITEL Services S.A.C. Todos los derechos reservados.
           </p>
           <p className="text-xs text-white/40">
-            Lima, Perú · Software & Telecom
+            Lima, Perú · {isTelecom ? "Telecomunicaciones" : "Software & Telecom"}
           </p>
         </div>
       </div>

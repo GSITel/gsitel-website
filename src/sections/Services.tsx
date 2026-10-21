@@ -12,11 +12,14 @@ import {
   ClipboardList,
   Code2,
   RadioTower,
+  Radio,
+  Gauge,
+  Activity,
   Workflow,
   X,
   type LucideIcon,
 } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import scope from "./ServiceScope.module.css";
 
 type ServiceItem = {
@@ -85,15 +88,81 @@ const services: ServiceItem[] = [
   },
 ];
 
+const telecomServices: ServiceItem[] = [
+  {
+    ...services[1],
+    title: "Despliegue e integración RAN",
+    description: "Implementamos y ponemos en servicio estaciones móviles 2G/3G/4G/5G con integración multivendor.",
+    activities: [
+      "Rollout, expansión y modernización de estaciones",
+      "Comisionamiento de BBU Huawei y Ericsson",
+      "Configuración e integración de nodos RAN",
+      "Validación de servicios y puesta ON AIR",
+    ],
+  },
+  {
+    id: "transmision",
+    label: "Transmisión y backhaul",
+    icon: Radio,
+    title: "Enlaces que conectan tu red",
+    description: "Planificamos y validamos enlaces de transmisión para conectar estaciones con capacidad y continuidad.",
+    promise: "Rutas claras. Capacidad validada.",
+    activities: [
+      "Site Survey y relevamiento de rutas TX",
+      "Implementación y alineación de enlaces microondas",
+      "Pruebas de enrutamiento, capacidad y redundancia",
+      "Aceptación técnica y documentación de enlaces",
+    ],
+    accent: "#1b5aa6",
+    accentRgb: "27, 90, 166",
+  },
+  {
+    id: "optimizacion",
+    label: "Drive Test y optimización RF",
+    icon: Gauge,
+    title: "Cobertura y calidad verificadas",
+    description: "Medimos el desempeño de la red y ajustamos parámetros de radio para mejorar cobertura, capacidad y calidad.",
+    promise: "Mediciones en campo. Decisiones con evidencia.",
+    activities: [
+      "Drive Test, Walk Test y mediciones RF",
+      "Análisis de cobertura y KPIs de radio",
+      "Optimización y parametrización RAN",
+      "Validación post-swap y seguimiento de refarming",
+    ],
+    accent: "#2f9edb",
+    accentRgb: "47, 158, 219",
+  },
+  {
+    id: "oym",
+    label: "Soporte OyM y NOC",
+    icon: Activity,
+    title: "Continuidad para tu operación",
+    description: "Acompañamos la operación de red con monitoreo, diagnóstico de incidencias y coordinación técnica en campo.",
+    promise: "Seguimiento continuo. Respuesta coordinada.",
+    activities: [
+      "Monitoreo de alarmas y KPIs desde NOC",
+      "Diagnóstico y troubleshooting RAN/TX",
+      "Gestión de averías y escalamiento multivendor",
+      "Soporte de mantenimiento y reportes operativos",
+    ],
+    accent: "#f39c36",
+    accentRgb: "243, 156, 54",
+  },
+];
+
 export const Services = ({ mode }: { mode: SiteMode }) => {
   const [activeService, setActiveService] = useState<ServiceItem | null>(null);
   const theme = getModeTheme(mode);
   const orderedServices = theme.isTelecom
-    ? [services[1], services[0], services[2]]
+    ? telecomServices
     : [services[0], services[2]];
   const focusTags = theme.isTelecom
-    ? ["RAN", "Drive test", "OyM", "Automatización"]
+    ? ["RAN", "Transmisión", "Drive Test", "OyM / NOC"]
     : ["Apps web", "Automatización", "APIs", "IA aplicada"];
+
+  useEffect(() => {
+    setActiveService(null);
+  }, [mode]);
 
   return (
     <section
@@ -229,7 +298,7 @@ export const Services = ({ mode }: { mode: SiteMode }) => {
             </div>
             <footer className={scope.footer}>
               <p>El siguiente paso: conocer el contexto de tu proyecto.</p>
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSdfgHkDApUgxqeuqpwoaJPVWo6nQjS7NI9wtpB_W7f0RCddpQ/viewform?usp=publish-editor" target="_blank" rel="noreferrer" className={scope.cta}>Hablemos de tu proyecto <ArrowUpRight size={16} aria-hidden="true" /></a>
+              <a href="#contacto" className={scope.cta}>Hablemos de tu proyecto <ArrowUpRight size={16} aria-hidden="true" /></a>
             </footer>
           </>
         )}

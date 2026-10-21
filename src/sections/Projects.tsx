@@ -1,8 +1,5 @@
 "use client";
 
-import telecomIntegrations from "@/assets/illustrations/hero-telecom-integrations.png";
-import telecomKpis from "@/assets/illustrations/hero-telecom-kpis.png";
-import telecomMonitoring from "@/assets/illustrations/hero-telecom-monitoring.png";
 import { AppModal } from "@/components/AppModal";
 import { ProjectImageCarousel } from "@/components/ProjectImageCarousel";
 import galleryStyles from "@/components/ProjectImageCarousel.module.css";
@@ -56,12 +53,6 @@ const TECH_ICON_MAP: Record<string, LucideIcon> = {
   "spring boot": Sprout,
   microservices: Boxes,
 };
-
-const TELECOM_VISUALS: ProjectDetailImage[] = [
-  { src: telecomKpis, alt: "Panel de indicadores y mediciones de telecomunicaciones" },
-  { src: telecomMonitoring, alt: "Monitoreo técnico de proyectos de telecomunicaciones" },
-  { src: telecomIntegrations, alt: "Integraciones de tecnologías móviles" },
-];
 
 const renderTechIcon = (tech: string) => {
   const Icon = TECH_ICON_MAP[tech.toLowerCase()] ?? Code2;
@@ -158,11 +149,13 @@ const ProjectGallery = ({
   images,
   projectTitle,
   phoneGallery = false,
+  photoGallery = false,
   onImageOpen,
 }: {
   images: ProjectDetailImage[];
   projectTitle: string;
   phoneGallery?: boolean;
+  photoGallery?: boolean;
   onImageOpen: (image: ProjectDetailImage) => void;
 }) => (
   <>
@@ -185,6 +178,8 @@ const ProjectGallery = ({
         ? "aspect-[9/19] sm:col-span-2 lg:col-span-2 !rounded-[1.65rem] border-[5px] border-[#0b1d3a] bg-white shadow-[0_18px_38px_rgba(11,29,58,0.16)]"
         : phoneGallery
           ? "col-span-2 aspect-[16/9] sm:col-span-3 lg:col-span-5"
+        : photoGallery && images.length === 2
+          ? "aspect-[3/4]"
         : isHeroImage
           ? "col-span-2 aspect-[16/8.3]"
           : "aspect-[4/3]";
@@ -207,7 +202,7 @@ const ProjectGallery = ({
             alt={imageItem.alt}
             fill
             loading="lazy"
-            className={isPhoneImage ? "object-contain p-0.5 transition-transform duration-700 ease-out group-hover:scale-[1.025]" : "object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"}
+            className={isPhoneImage ? "object-contain p-0.5 transition-transform duration-700 ease-out group-hover:scale-[1.025]" : `object-cover ${photoGallery ? "object-center" : "object-top"} transition-transform duration-700 ease-out group-hover:scale-[1.025]`}
             sizes={isPhoneImage ? "(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 14vw" : phoneGallery ? "(max-width: 640px) 100vw, 34vw" : isHeroImage ? "(max-width: 1024px) 100vw, 60vw" : "(max-width: 640px) 50vw, 30vw"}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#071425]/35 via-transparent to-transparent opacity-40 transition-opacity group-hover:opacity-70" />
@@ -245,9 +240,7 @@ const ProjectCaseStudy = ({
   const galleryImages =
     projectImages.length > 0
       ? projectImages
-      : isTelecom
-        ? TELECOM_VISUALS
-        : [{ src: project.image, alt: project.imageAlt }];
+      : [{ src: project.image, alt: project.imageAlt }];
   const isFeatured = !isTelecom && index === 0;
 
   return (
@@ -296,7 +289,7 @@ const ProjectCaseStudy = ({
             <p className="text-[9px] font-black uppercase tracking-[0.24em] text-[#1b5aa6]/65">
               {isFeatured ? "Caso principal" : `Proyecto ${String(index + 1).padStart(2, "0")}`} · {project.tag}
             </p>
-            <h3 className="mt-1 text-xl font-black uppercase leading-tight tracking-tight text-[#0b1d3a] sm:text-2xl lg:text-[1.7rem]">
+            <h3 className="mt-1 break-words text-lg font-black uppercase leading-tight tracking-tight text-[#0b1d3a] sm:text-2xl lg:text-[1.7rem]">
               {project.title}
             </h3>
           </div>
@@ -329,12 +322,20 @@ const ProjectCaseStudy = ({
       )}
 
       <div className={`grid items-start gap-6 lg:gap-8 ${isFeatured ? "mt-5 lg:grid-cols-[minmax(0,1.65fr)_minmax(300px,0.7fr)]" : "mt-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(300px,0.75fr)]"}`}>
-        <ProjectGallery
-          images={galleryImages}
-          projectTitle={project.title}
-          phoneGallery={project.galleryMode === "phone"}
-          onImageOpen={onImageOpen}
-        />
+        <div className="min-w-0">
+          <ProjectGallery
+            images={galleryImages}
+            projectTitle={project.title}
+            phoneGallery={project.galleryMode === "phone"}
+            photoGallery={isTelecom}
+            onImageOpen={onImageOpen}
+          />
+          {isTelecom && (
+            <p className="mt-3 text-xs leading-5 text-[#0b1d3a]/60">
+              Fotografías de referencia de infraestructura y trabajos de telecomunicaciones.
+            </p>
+          )}
+        </div>
 
         <motion.aside
           initial={{ opacity: 0, y: 20 }}

@@ -7,6 +7,7 @@ import type { ProjectCardData } from "@/data/projects/types";
 export const telecomProjects: ProjectCardData[] = [
   {
     id: "telrad",
+    detailImagesKey: "telecomRan",
     title: "RAN consolidado Entel Chile",
     tag: "Telrad Chile",
     description:
@@ -22,6 +23,7 @@ export const telecomProjects: ProjectCardData[] = [
   },
   {
     id: "refarming",
+    detailImagesKey: "telecomRefarming",
     title: "Refarming 2G/3G/4G banda 850/1900",
     tag: "Telefónica Perú",
     description:
@@ -37,6 +39,7 @@ export const telecomProjects: ProjectCardData[] = [
   },
   {
     id: "entel-events",
+    detailImagesKey: "telecomEvents",
     title: "Eventos RAN Entel Perú",
     tag: "Entel Perú",
     description:
@@ -52,6 +55,7 @@ export const telecomProjects: ProjectCardData[] = [
   },
   {
     id: "ipt",
+    detailImagesKey: "telecomRural",
     title: "Puesta ON AIR RAN rural",
     tag: "Internet Para Todos",
     description:
@@ -68,6 +72,7 @@ export const telecomProjects: ProjectCardData[] = [
   },
   {
     id: "entel-rollout",
+    detailImagesKey: "telecomRollout",
     title: "Rollout, expansión y modernización RAN/TX",
     tag: "Entel Perú",
     description:

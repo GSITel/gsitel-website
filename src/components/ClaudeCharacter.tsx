@@ -1,12 +1,12 @@
 import styles from "./ClaudeCharacter.module.css";
 
 type Props = {
-  variant?: "developer" | "consultant" | "operation";
+  variant?: "developer" | "consultant" | "operation" | "ceo" | "cto";
   className?: string;
 };
 
 export function ClaudeCharacter({ variant = "consultant", className }: Props) {
-  const developer = variant !== "consultant";
+  const developer = variant !== "consultant" && variant !== "ceo";
   return (
     <svg className={`${styles.mascot} ${className ?? ""}`} viewBox="0 0 150 130" fill="none" aria-hidden="true">
             <ellipse cx="77" cy="119" rx="48" ry="6" fill="#d9e3f0" />
@@ -23,6 +23,7 @@ export function ClaudeCharacter({ variant = "consultant", className }: Props) {
               <path d="M68 66H80V70H68V66Z" fill="#98583f" />
               {!developer && <g stroke="#423c3a" strokeWidth="3"><rect x="45" y="44" width="21" height="21" rx="5" /><rect x="82" y="44" width="21" height="21" rx="5" /><path d="M66 51H82M37 49H45M103 49H112" /></g>}
               {developer && <g stroke="#3b5272" strokeWidth="5"><path d="M36 53V43C36 25 48 19 74 19C100 19 112 25 112 43V53" /><path d="M35 45V65M113 45V65" strokeWidth="8" /></g>}
+              {variant === "ceo" && <g><path d="M43 76H105L111 91H38L43 76Z" fill="#365579" /><path d="M63 76L74 87L85 76" fill="#f5f8ff" /><path d="M71 79H77L79 89L74 94L69 89L71 79Z" fill="#1e63c6" /></g>}
             </g>
             {developer ? <g><path d="M45 79H109L116 112H38L45 79Z" fill="#567498" /><path d="M49 83H105L110 106H44L49 83Z" fill="#ecf3ff" /><path d="M68 89L63 94L69 99M84 89L89 94L83 99" stroke="#7394bc" strokeWidth="2" /><path d="M32 112H121V117H32V112Z" fill="#365579" /></g> : <g><rect x="104" y="77" width="33" height="42" rx="4" fill="#f8fbff" stroke="#8ca9c8" strokeWidth="2" /><path d="M112 87H128M112 94H125M112 101H121" stroke="#8ca9c8" strokeWidth="2" /><path d="M127 104L130 107L136 99" stroke="#4d8c7b" strokeWidth="2" /></g>}
           {variant === "operation" && <g><circle cx="125" cy="106" r="15" fill="#e2f4ed" stroke="#8bc1ad" /><path d="M118 106L123 111L132 101" stroke="#407b68" strokeWidth="3" /></g>}

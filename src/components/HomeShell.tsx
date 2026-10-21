@@ -13,13 +13,6 @@ import { CtaFooterShell } from "@/components/CtaFooterShell";
 import { Footer } from "@/sections/Footer";
 import { scrollToSection } from "@/lib/smoothSectionScroll";
 
-const DigitalTransformation = dynamic(
-  () =>
-    import("@/sections/DigitalTransformation").then(
-      (module) => module.DigitalTransformation,
-    ),
-);
-
 const KnowledgeStack = dynamic(
   () =>
     import("@/sections/KnowledgeStack").then((module) => module.KnowledgeStack),
@@ -151,7 +144,6 @@ export const HomeShell = () => {
         </div>
         <ModeAwareSection mode={mode}>
           <DarkSectionsShell mode={mode}>
-            {mode === "telecom" && <DigitalTransformation mode={mode} />}
             <Services mode={mode} />
           </DarkSectionsShell>
           <Projects mode={mode} />
@@ -165,7 +157,7 @@ export const HomeShell = () => {
           <Testimonials mode={mode} />
           <CtaFooterShell>
             <Contact mode={mode} />
-            <Footer />
+            <Footer mode={mode} />
           </CtaFooterShell>
         </ModeAwareSection>
       </main>

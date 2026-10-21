@@ -1,9 +1,5 @@
 "use client";
 
-import avatar1 from "@/assets/avatars/avatar-1.png";
-import avatar2 from "@/assets/avatars/avatar-2.png";
-import avatar3 from "@/assets/avatars/avatar-3.png";
-import avatar4 from "@/assets/avatars/avatar-4.png";
 import type { SiteMode } from "@/lib/siteMode";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
@@ -39,7 +35,7 @@ const softwareTestimonials: Testimonial[] = [
     tag: "Software",
   },
   {
-    name: "Fernando",
+    name: "Fernando Ledesma",
     role: "Xtreme Fitness Sport",
     summary: "La página web apoyó la campaña de apertura de su nuevo gimnasio en Pucallpa. Ahora desarrollamos un backoffice para la gestión de su empresa de gimnasios.",
     tag: "Software",
@@ -55,28 +51,24 @@ const softwareTestimonials: Testimonial[] = [
 const telecomTestimonials: Testimonial[] = [
   {
     text: "La integración RAN/TX se ejecutó con orden y sin reprocesos. Las MOP estuvieron claras para todo el equipo.",
-    imageSrc: avatar1.src,
     name: "Daniela Torres",
     role: "PM RAN · Operador móvil",
     tag: "Telecom",
   },
   {
     text: "En refarming 850/1900 mantuvimos continuidad del servicio gracias al seguimiento diario del plan.",
-    imageSrc: avatar2.src,
     name: "Carlos M.",
     role: "Jefe de Refarming · Telefónica Perú",
     tag: "Telecom",
   },
   {
     text: "La validación de rutas TX y los eventos RAN salieron a tiempo, con reportes claros al cierre de cada jornada.",
-    imageSrc: avatar3.src,
     name: "Paul Rojas",
     role: "Coordinador de Eventos · Entel Perú",
     tag: "Telecom",
   },
   {
     text: "El soporte OyM/NOC redujo tiempos de atención y nos dio visibilidad continua del estado de la red.",
-    imageSrc: avatar4.src,
     name: "Luis Herrera",
     role: "NOC Manager · Operador móvil",
     tag: "Telecom",
@@ -147,8 +139,8 @@ export const Testimonials = ({ mode }: { mode: SiteMode }) => {
                   className="h-10 w-10 rounded-full border border-white shadow-sm"
                 /> : <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#1b5aa6]/15 bg-[#1b5aa6]/[0.06] text-xs font-semibold text-[#1b5aa6]" aria-hidden="true">{name.split(" ").map((part) => part[0]).slice(0, 2).join("")}</span>}
                 <div className="min-w-0">
-                  <p className="truncate text-xs font-black tracking-tight text-[#0b1d3a]">{name}</p>
-                  <p className="mt-0.5 truncate text-[11px] text-[#0b1d3a]/48">{role}</p>
+                  <p className="break-words text-xs font-black tracking-tight text-[#0b1d3a]">{name}</p>
+                  <p className="mt-0.5 break-words text-[11px] leading-5 text-[#0b1d3a]/48">{role}</p>
                 </div>
               </div>
             </motion.article>

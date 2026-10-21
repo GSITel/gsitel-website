@@ -144,9 +144,7 @@ export const AboutHero = ({ mode }: AboutHeroProps) => {
 
             <div className={isTelecom ? "mt-5 flex flex-wrap items-center gap-3 lg:mt-7" : styles.actions}>
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLSdfgHkDApUgxqeuqpwoaJPVWo6nQjS7NI9wtpB_W7f0RCddpQ/viewform?usp=publish-editor"
-                target="_blank"
-                rel="noreferrer"
+                href="#contacto"
                 className={isTelecom ? `btn relative w-full overflow-hidden rounded-xl px-5 py-3.5 text-sm !text-white transition duration-500 hover:-translate-y-0.5 sm:w-auto sm:text-base ${copy.button}` : styles.primary}
               >
                 {copy.primary}
