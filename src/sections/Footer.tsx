@@ -42,6 +42,15 @@ export const Footer = ({ mode }: { mode?: SiteMode }) => {
             >
               soporte@gsitel-solutions.com
             </a>
+            <div className="group mt-7 flex items-center gap-4">
+              <div className="relative h-14 w-20 shrink-0">
+                <Image src="/bni-peru-blanco.png" alt="BNI Perú" fill sizes="80px" className="object-contain transition-opacity duration-300 group-hover:opacity-0" />
+                <Image src="/bni-peru-color.png" alt="" aria-hidden="true" fill sizes="80px" className="object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              </div>
+              <p className="max-w-56 text-xs leading-5 text-white/70">
+                Somos miembros de BNI Perú en Ingeniería de Software &amp; Innovación deportiva.
+              </p>
+            </div>
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:gap-12">

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { SiteMode } from "@/lib/siteMode";
 import { Header } from "@/sections/Header";
 import { AboutHero } from "@/sections/AboutHero";
+import { SportsSoftware } from "@/sections/SportsSoftware";
 import { Services } from "@/sections/Services";
 import { WorkProcess } from "@/sections/WorkProcess";
 import { DarkSectionsShell } from "@/components/DarkSectionsShell";
@@ -57,6 +58,7 @@ const ModeAwareSection = ({
 
 export const HomeShell = () => {
   const [mode, setMode] = useState<SiteMode>("software");
+  const [projectRequest, setProjectRequest] = useState<{ id: string } | null>(null);
   const [transitionMode, setTransitionMode] = useState<SiteMode>("software");
   const [isSwitchingMode, setIsSwitchingMode] = useState(false);
   const isSwitchingModeRef = useRef(false);
@@ -120,6 +122,7 @@ export const HomeShell = () => {
     }
 
     setTransitionMode(nextMode);
+    setProjectRequest(null);
     isSwitchingModeRef.current = true;
     setIsSwitchingMode(true);
 
@@ -142,11 +145,12 @@ export const HomeShell = () => {
             <AboutHero mode={mode} />
           </ModeAwareSection>
         </div>
+        {mode === "software" && <SportsSoftware onProjectSelect={(id) => setProjectRequest({ id })} />}
         <ModeAwareSection mode={mode}>
           <DarkSectionsShell mode={mode}>
             <Services mode={mode} />
           </DarkSectionsShell>
-          <Projects mode={mode} />
+          <Projects mode={mode} projectRequest={projectRequest} />
           <WorkProcess mode={mode} />
           {mode === "software" && (
             <details className="technical-details">

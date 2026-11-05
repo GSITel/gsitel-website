@@ -13,7 +13,7 @@ export const softwareProjects: ProjectCardData[] = [
     description:
       "Plataforma para alquilar canchas deportivas, consultar disponibilidad y gestionar reservas desde una experiencia móvil.",
     detail:
-      "CUADRAI PE es la plataforma principal de alquiler de canchas deportivas. Diseñamos una experiencia digital clara para consultar disponibilidad, reservar y administrar la operación de cada espacio desde una sola solución.",
+      "CuadrAI conecta a quienes buscan un espacio para jugar con quienes administran instalaciones deportivas. Desde la aplicación, los jugadores pueden descubrir canchas, consultar su disponibilidad y gestionar reservas.\n\nPara los administradores, la plataforma reúne la gestión de los espacios y sus reservas, acercando la operación del negocio a la experiencia de sus usuarios.",
     techTags: ["Python", "React Native"],
     detailImagesKey: "cuadraiOnboarding",
     highlights: [
@@ -62,7 +62,7 @@ export const softwareProjects: ProjectCardData[] = [
     description:
       "Experiencia digital para una marca fitness que busca atraer, informar y convertir nuevos miembros.",
     detail:
-      "Caso de éxito para Xtreme Fitness Sport: desarrollamos la experiencia pública del website y una aplicación interna para administrar clientes, planes, horarios y catálogo desde una sola operación.",
+      "Para Xtreme Fitness Sport desarrollamos una presencia web que presenta su propuesta de entrenamiento y facilita que nuevos miembros conozcan el gimnasio.\n\nTambién construimos una aplicación interna para centralizar la administración de clientes, planes, promociones, horarios y catálogo. Así, el equipo cuenta con herramientas digitales tanto para comunicar sus servicios como para organizar su operación diaria.",
     techTags: ["Web Design", "UI/UX", "SEO"],
     detailImagesKey: "xtreme",
     highlights: [
@@ -84,7 +84,7 @@ export const softwareProjects: ProjectCardData[] = [
     description:
       "Sitio web que comunica el propósito, los resultados y las historias de una organización que impulsa oportunidades para jóvenes.",
     detail:
-      "Página web diseñada para Villas Sin Fronteras, una organización enfocada en apoyar a la juventud mediante becas deportivas. El sitio comunica su propósito, muestra resultados e historias, y facilita el contacto con aliados y beneficiarios.",
+      "Desarrollamos la página web de Villas Sin Fronteras para dar visibilidad a su labor de apoyo a jóvenes a través de becas deportivas. El sitio reúne su propósito, resultados e historias en una presentación accesible para quienes desean conocer la organización.\n\nLa experiencia también facilita el contacto con posibles aliados y beneficiarios, dando a la organización un espacio digital para comunicar su trabajo y conectar con su comunidad.",
     techTags: ["UI/UX", "Web Design", "SEO"],
     detailImagesKey: "ong",
     highlights: [

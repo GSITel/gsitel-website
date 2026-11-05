@@ -10,6 +10,7 @@ import { softwareProjects } from "@/data/projects/software";
 import { telecomProjects } from "@/data/projects/telecom";
 import type { ProjectCardData, ProjectDetailImage } from "@/data/projects/types";
 import type { SiteMode } from "@/lib/siteMode";
+import { scrollToSection } from "@/lib/smoothSectionScroll";
 import { AnimatePresence, motion } from "framer-motion";
 import { useHydratedReducedMotion } from "@/lib/useHydratedReducedMotion";
 import {
@@ -260,7 +261,6 @@ const ProjectCaseStudy = ({
       className={`quiet-card relative overflow-hidden rounded-[1.75rem] p-4 sm:p-6 lg:rounded-[2.25rem] lg:p-8 ${
         isFeatured ? "ring-1 ring-[#2f9edb]/35 shadow-[0_24px_70px_rgba(47,158,219,0.18)]" : ""
       }`}
-      id="active-project-case"
       role="tabpanel"
     >
       <div
@@ -322,7 +322,7 @@ const ProjectCaseStudy = ({
       )}
 
       <div className={`grid items-start gap-6 lg:gap-8 ${isFeatured ? "mt-5 lg:grid-cols-[minmax(0,1.65fr)_minmax(300px,0.7fr)]" : "mt-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(300px,0.75fr)]"}`}>
-        <div className="min-w-0">
+        <div className="order-2 min-w-0 lg:order-1">
           <ProjectGallery
             images={galleryImages}
             projectTitle={project.title}
@@ -342,7 +342,7 @@ const ProjectCaseStudy = ({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.4 }}
           transition={{ duration: 0.58, delay: 0.16 }}
-          className="relative overflow-hidden rounded-[1.4rem] border border-[#0b1d3a]/8 bg-[#f4f7ff] p-5 sm:p-6 lg:sticky lg:top-28"
+          className="relative order-1 min-w-0 overflow-hidden rounded-[1.4rem] border border-[#0b1d3a]/8 bg-[#f4f7ff] p-5 sm:p-6 lg:sticky lg:top-28 lg:order-2"
         >
           <div
             className="absolute -right-14 -top-14 h-36 w-36 rounded-full blur-3xl"
@@ -352,8 +352,8 @@ const ProjectCaseStudy = ({
             <p className="text-[9px] font-black uppercase tracking-[0.26em] text-[#1b5aa6]">
               El proyecto
             </p>
-            <p className="mt-4 whitespace-pre-line text-sm font-medium leading-7 text-[#0b1d3a]/76">
-              {project.description}
+            <p className="mt-4 whitespace-pre-line text-base leading-7 text-[#0b1d3a]/80">
+              {["pichangapp", "xtreme", "ong"].includes(project.id) ? project.detail : project.description}
             </p>
             {project.projectUrl && (
               <a
@@ -361,7 +361,7 @@ const ProjectCaseStudy = ({
                 target="_blank"
                 rel="noreferrer"
                 className="mt-5 inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-[10px] font-black uppercase tracking-[0.12em] text-white shadow-[0_10px_24px_rgba(27,90,166,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(27,90,166,0.3)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2f9edb]"
-                style={{ backgroundColor: project.accent }}
+                style={{ backgroundColor: project.id === "xtreme" ? "#0b1d3a" : project.accent }}
               >
                 {project.projectUrlLabel ?? "Ver proyecto"}
                 <ExternalLink className="h-3.5 w-3.5" aria-hidden="true" />
@@ -422,7 +422,7 @@ const ProjectCaseStudy = ({
                 {project.highlights.map((highlight) => (
                   <li
                     key={highlight}
-                    className="flex items-start gap-3 text-xs font-bold leading-5 text-[#0b1d3a]/72"
+                    className="flex items-start gap-3 text-sm font-medium leading-6 text-[#0b1d3a]/80"
                   >
                     <span
                       className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-white"
@@ -442,7 +442,7 @@ const ProjectCaseStudy = ({
   );
 };
 
-export const Projects = ({ mode }: { mode: SiteMode }) => {
+export const Projects = ({ mode, projectRequest }: { mode: SiteMode; projectRequest?: { id: string } | null }) => {
   const [activeImage, setActiveImage] = useState<ProjectDetailImage | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
@@ -454,6 +454,16 @@ export const Projects = ({ mode }: { mode: SiteMode }) => {
     setActiveIndex(0);
     setDirection(1);
   }, [mode]);
+
+  useEffect(() => {
+    if (!projectRequest) return;
+    const index = projects.findIndex(({ id }) => id === projectRequest.id);
+    if (index < 0) return;
+    setActiveIndex(index);
+    const target = document.getElementById("active-project-case");
+    target?.focus({ preventScroll: true });
+    scrollToSection("active-project-case");
+  }, [projectRequest, projects]);
 
   const selectProject = (nextIndex: number) => {
     if (nextIndex === activeIndex) return;
@@ -535,7 +545,7 @@ export const Projects = ({ mode }: { mode: SiteMode }) => {
           </div>
         </div>
 
-        <div className="mt-4 min-h-[520px] overflow-hidden sm:mt-5">
+        <div id="active-project-case" tabIndex={-1} className="mt-4 min-h-[520px] overflow-hidden sm:mt-5">
           <AnimatePresence initial={false} mode="wait" custom={direction}>
             <ProjectCaseStudy
               key={activeProject.id}

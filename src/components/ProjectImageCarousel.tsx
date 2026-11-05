@@ -19,9 +19,9 @@ export function ProjectImageCarousel({ images, title, onImageOpen, phoneGallery 
     const target = Math.max(0, Math.min(images.length - 1, active + direction));
     node.scrollTo({ left: node.clientWidth * target, behavior: reduceMotion ? "instant" : "smooth" });
   }
-  return <div className={styles.carousel} role="region" aria-label={`Capturas de ${title}`}>
+  return <div className={`${styles.carousel} md:hidden`} role="region" aria-label={`Capturas de ${title}`}>
     <div ref={viewport} className={styles.viewport} onScroll={(event) => { const node = event.currentTarget; if (node.clientWidth) setActive(Math.min(images.length - 1, Math.max(0, Math.round(node.scrollLeft / node.clientWidth)))); }}>
-      {images.map((item, index) => <button key={item.alt} type="button" className={`${styles.slide} ${phoneGallery ? styles.phone : ""}`} onClick={() => onImageOpen(item)} aria-label={`Ampliar imagen ${index + 1}: ${item.alt}`}>
+      {images.map((item, index) => <button key={item.alt} type="button" className={`${styles.slide} ${phoneGallery ? styles.phone : ""}`} style={{ position: "relative", overflow: "hidden" }} onClick={() => onImageOpen(item)} aria-label={`Ampliar imagen ${index + 1}: ${item.alt}`}>
         <Image src={item.src} alt={item.alt} fill sizes="(max-width: 767px) 90vw, 1px" className={styles.image} loading="lazy" />
         <span className={styles.expand}><Expand size={17} aria-hidden="true" /></span>
       </button>)}
