@@ -7,20 +7,20 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Acerca de Nosotros",
-  description: "Conoce a GSITEL Services S.A.C.: ingeniería telecom, software y automatización para operaciones críticas en Latinoamérica.",
+  description: "Conoce a GSITEL, empresa de ingeniería de software e innovación deportiva en Perú. Creamos software a medida, plataformas deportivas y automatización.",
   alternates: { canonical: "/aboutus" },
-  keywords: ["GSITEL", "telecomunicaciones", "software a medida", "automatización", "ingeniería RAN", "Perú", "LATAM"],
+  keywords: ["GSITEL", "ingeniería de software", "innovación deportiva", "software a medida", "software deportivo", "automatización", "Perú", "LATAM"],
   openGraph: {
-    title: "Acerca de Nosotros | GSITEL Services S.A.C.",
-    description: "El equipo y la forma de trabajar de GSITEL: conectividad, software y automatización para operaciones críticas.",
+    title: "GSITEL | Nuestro equipo de software e innovación deportiva",
+    description: "Conoce a GSITEL, empresa de ingeniería de software e innovación deportiva en Perú. Creamos software a medida, plataformas deportivas y automatización.",
     url: "https://gsitelservices.com/aboutus",
     type: "website",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "Acerca de GSITEL Services S.A.C." }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "GSITEL — Ingeniería de software e innovación deportiva" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Acerca de Nosotros | GSITEL Services S.A.C.",
-    description: "El equipo y la forma de trabajar de GSITEL: conectividad, software y automatización para operaciones críticas.",
+    title: "GSITEL | Nuestro equipo de software e innovación deportiva",
+    description: "Conoce a GSITEL, empresa de ingeniería de software e innovación deportiva en Perú. Creamos software a medida, plataformas deportivas y automatización.",
     images: ["/og-image.png"],
   },
 };

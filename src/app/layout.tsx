@@ -9,20 +9,22 @@ const dmSans = DM_Sans({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://gsitelservices.com"),
   title: {
-    default: "GSITEL Services S.A.C.",
+    default: "GSITEL | Ingeniería de software e innovación deportiva",
     template: "%s | GSITEL Services S.A.C.",
   },
   description:
-    "GSITEL desarrolla software a medida, aplicaciones web, páginas web, automatización de procesos, inteligencia artificial e integración SUNAT para empresas en Perú.",
+    "Empresa de ingeniería de software e innovación deportiva en Perú. Desarrollamos software a medida, plataformas deportivas y automatización para empresas.",
   alternates: {
     canonical: "/",
   },
   keywords: [
     "GSITEL",
-    "telecomunicaciones",
-    "RAN",
-    "ingeniería RAN",
-    "automatización",
+    "ingeniería de software",
+    "innovación deportiva",
+    "software deportivo",
+    "plataformas deportivas",
+    "gestión de espacios deportivos",
+    "software para academias y campeonatos",
     "software a medida",
     "desarrollo de software Perú",
     "aplicaciones web",
@@ -31,9 +33,6 @@ export const metadata: Metadata = {
     "automatización SUNAT",
     "inteligencia artificial para empresas",
     "soluciones digitales para empresas",
-    "integración RAN",
-    "optimización de redes",
-    "proyectos telecom",
     "Perú",
   ],
   applicationName: "GSITEL Services",
@@ -52,9 +51,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "GSITEL Services S.A.C.",
+    title: "GSITEL | Ingeniería de software e innovación deportiva",
     description:
-      "Soluciones en software y telecom: automatización, integración y soporte RAN multivendor.",
+      "Empresa de ingeniería de software e innovación deportiva en Perú. Desarrollamos software a medida, plataformas deportivas y automatización para empresas.",
     type: "website",
     locale: "es_PE",
     siteName: "GSITEL Services S.A.C.",
@@ -64,15 +63,15 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "GSITEL Services S.A.C.",
+        alt: "GSITEL — Ingeniería de software e innovación deportiva",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "GSITEL Services S.A.C.",
+    title: "GSITEL | Ingeniería de software e innovación deportiva",
     description:
-      "Soluciones en software y telecom: automatización, integración y soporte RAN multivendor.",
+      "Empresa de ingeniería de software e innovación deportiva en Perú. Desarrollamos software a medida, plataformas deportivas y automatización para empresas.",
     images: ["/og-image.png"],
   },
   icons: {
